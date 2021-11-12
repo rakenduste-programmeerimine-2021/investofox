@@ -31,7 +31,7 @@ docker compose-up
 - [Backend](node.js) - selgumisel
 - [Express](https://www.npmjs.com/package/express) - fast node.js network app framework [@tjholowaychuk]
 - [MongoDB/Postgres](https://www.mongodb.com/) - Andmebaas/selgumisel
-
+---
 ## Wireframe
 ![Source code](wireframes/portfolio.jpg)
 ![Source code](wireframes/addOrder.jpg)
