@@ -1,0 +1,37 @@
+version: '3.4'
+
+services: 
+  frontend-react:
+    build:
+      context: '../frontend'
+    ports: 
+      - '3000:3000'
+    volumes: 
+      - '../frontend:/home/node/app:delegated'
+    command: 'run start'
+    container_name: 'frontend'
+
+  mongo: 
+    image: mongo:5.0.2
+    ports: 
+      - '27017:27017'
+    environment: 
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      # siia on vaja volumes-it, et andmebaas salvestaks tulemusi
+    container_name: 'mongo'
+
+  backend-node:
+    depends_on: 
+      - mongo
+    build:
+      context: '../backend-node'
+    ports: 
+      - '8081:3000'
+      - '9000:9000'
+    environment: 
+      MONGODB_URI: mongodb://root:root@mongo/investofox?authSource=admin
+    volumes: 
+      - '../backend-node:/home/node/app:delegated'
+    command: 'run dev'
+    container_name: 'backend-node'

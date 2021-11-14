@@ -5,37 +5,50 @@
 ## Autorid
 [@Gaspar Luik](github.com/gasparluik)
 [@Liisa Mikola](github.com/liismik)
-## Sisukord
+### Sisukord
 - [Autorid](#Autorid)
 - [Projekt](#Projekt)
 - [Installeerimine](#Installeerimisjuhend)
-- [Tarkvara](#Mida kasutame)
+- [Tarkvara](#Mida kasutame?)
 - [Kuvatõmmised](#Kuvatõmmised)
 
-## Projekt
+### Projekt
 Rakendus on loodud TLÜ Informaatika eriala, rakenduste programmeerimise aineraames. Rakenduse eesmärk on lihtsustada enda investeerimisportfoolio jälgimist, uuendamist, analüüsimist. Märkasime, et paljud portfelli haldamiseks loodud rakendused ei oma mõnda olulist funktsionaalsust, mida meie proovime parandada.
 
-## Installeerimisjuhend
+### Funktsionaalsus
+- Kasutaja saab end registreerida ning sisse logida.
+- Kasutaja saab lisada tehingu
+- Tehinguid saab vaadata, ning kustutada.
+- Portfelli ülevaadet saab näha graafikul ning näitajate näol
+- Kasutaja saab enda kasutaja andmeid muuta
+#### Kui jõuame
+- Sisselogimine Googleiga
+- Tehinguid saab muuta
+- Portfelli Year-Over-Year muutus, parim tehing, halvim tehing jne
+- Investeerimiseesmärkide märkimine
+
+### Installeerimisjuhend
 
 - Lae alla [Docker](https://docker.com)
 - Klooni repo
 - Ava docker siin kloonitud kaustas local-dev, käsuga:
  ```sh
 cd local-dev
-docker compose-up
+docker compose-up -d
 ```
 
-## Mida kasutame?
+### Mida kasutame?
 
 - [Reactjs](https://reactjs.com) - Javascript framework
-- [Backend](node.js) - selgumisel
+- [Node.js](node.js) - Backendiks Node.js
 - [Express](https://www.npmjs.com/package/express) - fast node.js network app framework [@tjholowaychuk]
-- [MongoDB/Postgres](https://www.mongodb.com/) - Andmebaas/selgumisel
+- [MongoDB](https://www.mongodb.com/) - Andmebaas
 ---
-## Wireframe
+### Wireframe
+Detailsemad pildid tulevad varasti Figmat kasutades
 ![Source code](wireframes/portfolio.jpg)
 ![Source code](wireframes/addOrder.jpg)
 ![Source code](wireframes/showOrders.jpg)
 
-## Rakenduse kuvatõmmised
+### Rakenduse kuvatõmmised
 Tulevad tulevikus
