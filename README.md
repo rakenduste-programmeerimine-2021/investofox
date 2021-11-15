@@ -8,6 +8,7 @@
 ### Sisukord
 - [Autorid](#Autorid)
 - [Projekt](#Projekt)
+- [Funktsionaalsus](#Funktsionaalsus)
 - [Installeerimine](#Installeerimisjuhend)
 - [Tarkvara](#Tarkvara)
 - [Kuvatõmmised](#Kuvatõmmised)
@@ -41,14 +42,11 @@ docker compose-up -d
 
 - [Reactjs](https://reactjs.com) - Javascript framework
 - [Node.js](node.js) - Backendiks Node.js
-- [Express](https://www.npmjs.com/package/express) - fast node.js network app framework [@tjholowaychuk]
+- [Express](https://www.npmjs.com/package/express) - fast node.js network app framework
 - [MongoDB](https://www.mongodb.com/) - Andmebaas
 ---
 ### Wireframe
-Detailsemad pildid tulevad varasti Figmat kasutades
-![Source code](wireframes/portfolio.jpg)
-![Source code](wireframes/addOrder.jpg)
-![Source code](wireframes/showOrders.jpg)
+[Figma](https://www.figma.com/file/oj0dggGEE0yHlKxfRBSrm4/InvestoFox?node-id=0%3A1)
 
 ### Rakenduse kuvatõmmised
 Tulevad tulevikus
