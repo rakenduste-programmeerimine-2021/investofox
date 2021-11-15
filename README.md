@@ -11,7 +11,7 @@
 - [Funktsionaalsus](#Funktsionaalsus)
 - [Installeerimine](#Installeerimisjuhend)
 - [Tarkvara](#Tarkvara)
-- [Kuvatõmmised](#Kuvatõmmised)
+- [Kuvatõmmised](#Rakenduse kuvatõmmised)
 
 ### Projekt
 Rakendus on loodud TLÜ Informaatika eriala, rakenduste programmeerimise aineraames. Rakenduse eesmärk on lihtsustada enda investeerimisportfoolio jälgimist, uuendamist, analüüsimist. Märkasime, et paljud portfelli haldamiseks loodud rakendused ei oma mõnda olulist funktsionaalsust, mida meie proovime parandada.
@@ -37,7 +37,6 @@ Rakendus on loodud TLÜ Informaatika eriala, rakenduste programmeerimise aineraa
 cd local-dev
 docker compose-up -d
 ```
-
 ### Tarkvara
 
 - [Reactjs](https://reactjs.com) - Javascript framework
