@@ -1,15 +1,12 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3000
-const jwtAuth = require("./middleware/jwtAuth")
-require("dotenv").config()
+//const jwtAuth = require("./middleware/jwtAuth")
+//require("dotenv").config()
 
-const authRoutes = require('./routes/auth');
 
 const app = express()
 app.use(express.json());
-
-app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')

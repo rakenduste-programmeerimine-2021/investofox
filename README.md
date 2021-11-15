@@ -9,7 +9,7 @@
 - [Autorid](#Autorid)
 - [Projekt](#Projekt)
 - [Installeerimine](#Installeerimisjuhend)
-- [Tarkvara](#Mida kasutame?)
+- [Tarkvara](#Tarkvara)
 - [Kuvatõmmised](#Kuvatõmmised)
 
 ### Projekt
@@ -37,7 +37,7 @@ cd local-dev
 docker compose-up -d
 ```
 
-### Mida kasutame?
+### Tarkvara
 
 - [Reactjs](https://reactjs.com) - Javascript framework
 - [Node.js](node.js) - Backendiks Node.js
