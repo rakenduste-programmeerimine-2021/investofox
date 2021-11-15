@@ -8,9 +8,10 @@
 ### Sisukord
 - [Autorid](#Autorid)
 - [Projekt](#Projekt)
+- [Funktsionaalsus](#Funktsionaalsus)
 - [Installeerimine](#Installeerimisjuhend)
-- [Tarkvara](#Mida kasutame?)
-- [Kuvatõmmised](#Kuvatõmmised)
+- [Tarkvara](#Tarkvara)
+- [Kuvatõmmised](#Rakenduse kuvatõmmised)
 
 ### Projekt
 Rakendus on loodud TLÜ Informaatika eriala, rakenduste programmeerimise aineraames. Rakenduse eesmärk on lihtsustada enda investeerimisportfoolio jälgimist, uuendamist, analüüsimist. Märkasime, et paljud portfelli haldamiseks loodud rakendused ei oma mõnda olulist funktsionaalsust, mida meie proovime parandada.
@@ -36,19 +37,15 @@ Rakendus on loodud TLÜ Informaatika eriala, rakenduste programmeerimise aineraa
 cd local-dev
 docker compose-up -d
 ```
-
-### Mida kasutame?
+### Tarkvara
 
 - [Reactjs](https://reactjs.com) - Javascript framework
 - [Node.js](node.js) - Backendiks Node.js
-- [Express](https://www.npmjs.com/package/express) - fast node.js network app framework [@tjholowaychuk]
+- [Express](https://www.npmjs.com/package/express) - fast node.js network app framework
 - [MongoDB](https://www.mongodb.com/) - Andmebaas
 ---
 ### Wireframe
-Detailsemad pildid tulevad varasti Figmat kasutades
-![Source code](wireframes/portfolio.jpg)
-![Source code](wireframes/addOrder.jpg)
-![Source code](wireframes/showOrders.jpg)
+[Figma](https://www.figma.com/file/oj0dggGEE0yHlKxfRBSrm4/InvestoFox?node-id=0%3A1)
 
 ### Rakenduse kuvatõmmised
 Tulevad tulevikus
