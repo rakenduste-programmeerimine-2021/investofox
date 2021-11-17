@@ -1,0 +1,13 @@
+.leftBar {
+    width: 220px;
+    height: 100%;
+    color: #FFFFFF;
+    background-color: #222222;
+    padding: 25px 0px 25px 0px;
+    text-align: center;
+}
+
+.logo {
+    width: 157px;
+    height: 97px;
+}
