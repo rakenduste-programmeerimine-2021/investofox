@@ -11,7 +11,7 @@
 - [Funktsionaalsus](#Funktsionaalsus)
 - [Installeerimine](#Installeerimisjuhend)
 - [Tarkvara](#Tarkvara)
-- [Kuvatõmmised](#Rakenduse kuvatõmmised)
+- [Kuvatõmmised](#Kuvatõmmised)
 
 ### Projekt
 Rakendus on loodud TLÜ Informaatika eriala, rakenduste programmeerimise aineraames. Rakenduse eesmärk on lihtsustada enda investeerimisportfoolio jälgimist, uuendamist, analüüsimist. Märkasime, et paljud portfelli haldamiseks loodud rakendused ei oma mõnda olulist funktsionaalsust, mida meie proovime parandada.
@@ -47,5 +47,5 @@ docker compose-up -d
 ### Wireframe
 [Figma](https://www.figma.com/file/oj0dggGEE0yHlKxfRBSrm4/InvestoFox?node-id=0%3A1)
 
-### Rakenduse kuvatõmmised
+### Kuvatõmmised
 Tulevad tulevikus
