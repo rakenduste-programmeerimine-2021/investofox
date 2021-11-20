@@ -11,8 +11,10 @@ const app = express()
 //this will convert the request into json, since node doesn't accept json by default
 app.use(express.json());
 
-app.use('/api/auth', authRoutes)
+app.use('/api/auth',authRoutes)
 
+//this should have login auth enabled
+app.post('/api/auth/login', jwtAuth, authRoutes)
 
 
 app.get('/', (req, res) => {
@@ -21,10 +23,6 @@ app.get('/', (req, res) => {
 
 app.get('*', (req, res) => {
   res.send('This route does not exist')
-})
-
-app.get('/exampleresponse', (req, res) => {
-  res.send('This is the example response')
 })
 
 mongoose

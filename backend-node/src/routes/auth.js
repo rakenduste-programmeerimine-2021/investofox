@@ -38,4 +38,6 @@ router.post("/signup", [
         .withMessage("Must be at least 6 characters long")
 ], validationMiddleware, authController.signup);
 
+router.get("/user", authController.getUser)
+
 module.exports = router
