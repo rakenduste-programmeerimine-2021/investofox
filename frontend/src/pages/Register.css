@@ -1,4 +1,4 @@
-.body {
+.register-body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,17 +7,17 @@
     height: 100vh;
 }
 
-.logoContainer {
+.register-logoContainer {
     margin-top: 50px;
     text-align: center;
 }
 
-.logo {
+.register-logo {
     width: 157px;
     height: 97px;
 }
 
-.registerForm {
+.register-registerForm {
     text-align: center;
     margin-top: 80px;
 }
