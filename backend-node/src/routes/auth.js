@@ -13,7 +13,6 @@ router.post("/login", [
         .withMessage("Must be at least 6 characters long")
 ], validationMiddleware, authController.login)
 
-
 router.post("/signup", [
     check("firstName")
         .isLength({ min: 3 })
@@ -36,8 +35,6 @@ router.post("/signup", [
     check("password")
         .isLength({ min: 6 })
         .withMessage("Must be at least 6 characters long")
-], validationMiddleware, authController.signup);
-
-router.get("/user", authController.getUser)
+], validationMiddleware, authController.signup)
 
 module.exports = router

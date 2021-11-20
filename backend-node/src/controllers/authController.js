@@ -82,13 +82,13 @@ exports.signup = async (req, res) => {
     res.status(200).send(User);
   };
 
-  exports.deletePost = async (req, res) => {
+  exports.deleteUser = async (req, res) => {
     const { id } = req.params;
   
-    const Post = await Post.findOneAndDelete({ _id: id })
+    const User = await User.findOneAndDelete({ _id: id })
   
-    if (!Post) res.status(404).send("No Post with that id found")
+    if (!User) res.status(404).send("No user with that id found")
   
-    res.status(200).send(`Successfully deleted the following Post: \n ${Post}`)
+    res.status(200).send(`Successfully deleted the following User: \n ${User}`)
   }
 };

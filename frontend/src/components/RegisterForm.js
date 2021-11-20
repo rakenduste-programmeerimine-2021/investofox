@@ -27,7 +27,7 @@ function RegisterForm() {
 
         //post req to register user
         await fetch('http://localhost:8081/api/auth/signup', {
-            method: 'Post',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },

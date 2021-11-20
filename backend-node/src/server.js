@@ -13,8 +13,11 @@ app.use(express.json());
 
 app.use('/api/auth',authRoutes)
 
+
 //this should have login auth enabled
-app.post('/api/auth/login', jwtAuth, authRoutes)
+app.get('/api/auth/user', (authRoutes, res) =>{
+  res.send("whatever")
+})
 
 
 app.get('/', (req, res) => {
