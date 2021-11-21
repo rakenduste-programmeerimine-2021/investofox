@@ -65,76 +65,74 @@ function RegisterForm() {
 
 
     return(
-        <div className="container">
-            <form className="content" onSubmit={handleSubmit}>
-            <div className="header">
-                <p className="title">Registration</p>
+        <div className="register-container">
+            <form className="register-content" onSubmit={handleSubmit}>
+            <div className="register-header">
+                <p className="register-title">Registration</p>
             </div>
-                <div className="row">
+                <div className="register-row">
                     <label>First name</label>
                     <input 
                         type="text" 
                         name="firstName"
                         placeholder="Example" 
-                        className="inputField"
+                        className="register-inputField"
                         onChange={(e) => setFirstName(e.target.value)}
                         required
                     />
                 </div>
-                <div className="row">
+                <div className="register-row">
                     <label>Last name</label>
                     <input 
                         type="text" 
                         name="lastName"
                         placeholder="Account" 
-                        className="inputField"
-                        onChange={(e) => setLastName(e.target.value)}
-                        required 
+                        className="register-inputField" 
                     />
                 </div>
-                <div className="row">
+                <div className="register-row">
                     <label>Email</label>
                     <input 
                         type="email" 
                         name="email"
                         placeholder="example@example.com" 
-                        className="inputField"
+                        className="register-inputField" 
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         email
                     />
                 </div>
-                <div className="row">
+                <div className="register-row">
                     <label>Password</label>
                     <input 
                         type="password" 
                         name="password"
                         placeholder="Password" 
-                        className="inputField"
+                        className="register-inputField" 
                         onChange={(e) => setPassword(e.target.value)}
                         minLength= "6"
                         required
                     />
                 </div>
-                <div className="row">
+                <div className="register-row">
                     <label>Confirm password</label>
                     <input 
                         type="password" 
                         name="confirmpassword" 
                         placeholder="Confirm password" 
-                        className="inputField" 
+                        className="register-inputField"
                         required
                     />
                 </div>
-                <div className="footerDiv">
-                    <div className="buttonsDiv">
+                <div className="register-footerDiv">
+                    <div className="register-buttonsDiv">
                         <Link to="./login">
-                            <button className="backButton">Back</button>
+                            <button className="register-backButton">Back</button>
                         </Link>
                         <input 
                             type="submit" 
                             value="Register" 
-                            className="registerButton" 
+                            className="register-registerButton" 
                         />
                     </div>
                     <span>{keke}</span>
