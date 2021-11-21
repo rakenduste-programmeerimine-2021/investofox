@@ -1,8 +1,39 @@
 import React from 'react';
 import './LoginForm.css';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios'
 
 function LoginForm() {
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('') 
+
+    const handleSubmit = async(value) =>{
+        value.preventDefault()
+
+        const user = {
+            email: email,
+            password: password
+        }
+
+        try{
+            axios.post("http://localhost:8081/api/auth/login", user)
+            .then(res => {
+                const returnData = JSON.stringify(user)
+                console.log(returnData)
+                if(res.token && res.ok){
+                    console.log("Succesfuly logged in!")
+                }
+            }).catch(error => {
+                console.log(error)
+            })
+        }catch(error){
+            console.error(error)
+        }
+    }
+
+
+
     return(
         <div className="login-container">
             <form className="login-content" onSubmit={handleSubmit}>

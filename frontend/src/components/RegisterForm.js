@@ -87,7 +87,9 @@ function RegisterForm() {
                         type="text" 
                         name="lastName"
                         placeholder="Account" 
-                        className="register-inputField" 
+                        className="register-inputField"
+                        onChange={(e) => setLastName(e.target.value)}
+                        required 
                     />
                 </div>
                 <div className="register-row">
@@ -135,7 +137,6 @@ function RegisterForm() {
                             className="register-registerButton" 
                         />
                     </div>
-                    <span>{keke}</span>
                 </div>
             </form>
         </div>
