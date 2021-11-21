@@ -80,7 +80,7 @@ exports.signup = async (req, res) => {
     const User = await User.find({});
 
     res.status(200).send(User);
-  };
+  }
 
   exports.deleteUser = async (req, res) => {
     const { id } = req.params;
@@ -89,6 +89,6 @@ exports.signup = async (req, res) => {
   
     if (!User) res.status(404).send("No user with that id found")
   
-    res.status(200).send(`Successfully deleted the following User: \n ${User}`)
+    res.status(200).send(`Successfully deleted the following user: \n ${User}`)
   }
-};
+}

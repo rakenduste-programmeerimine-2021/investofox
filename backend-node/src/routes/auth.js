@@ -37,4 +37,11 @@ router.post("/signup", [
         .withMessage("Must be at least 6 characters long")
 ], validationMiddleware, authController.signup)
 
+//router.get("/users", authController.getUsers)
+/*router.delete("/delete/:id",[
+    check("email")
+    .exists()
+    .withMessage("The user does not exist")
+], validationMiddleware, authController.deleteUser) */
+
 module.exports = router

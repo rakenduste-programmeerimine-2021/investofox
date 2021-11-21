@@ -2,6 +2,7 @@ import React from 'react';
 import './RegisterForm.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios'
 
 function RegisterForm() {
     const [firstName, setFirstName] = useState('')
@@ -22,11 +23,28 @@ function RegisterForm() {
             email: email,
             password: password
         }
-
         console.log(user)
 
+        //axios
+        try{
+            axios.post('http://localhost:8081/api/auth/signup', user)
+            .then(res => {
+                console.log(res.data)
+                if(res.ok){
+                    const successMsg = "User registered successfully!"
+                    return successMsg
+                }
+
+            }).catch(error => {
+                console.log(error)
+            })
+
+        } catch(error){
+            console.error(error)
+        }
+
         //post req to register user
-        await fetch('http://localhost:8081/api/auth/signup', {
+        /*await fetch('http://localhost:8081/api/auth/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -41,9 +59,9 @@ function RegisterForm() {
             return successMsg
         }).catch((e) => {
             console.error(e)
-        })
-
+        })*/
     }
+
 
 
     return(
@@ -119,6 +137,7 @@ function RegisterForm() {
                             className="registerButton" 
                         />
                     </div>
+                    <span>{keke}</span>
                 </div>
             </form>
         </div>

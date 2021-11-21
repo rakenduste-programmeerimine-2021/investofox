@@ -11,13 +11,18 @@ const app = express()
 //this will convert the request into json, since node doesn't accept json by default
 app.use(express.json());
 
-app.use('/api/auth',authRoutes)
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost8081/api/auth"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+app.use('/api/auth', authRoutes)
 
 
 //this should have login auth enabled
-app.get('/api/auth/user', (authRoutes, res) =>{
-  res.send("whatever")
-})
+app.get('/api/auth/user', jwtAuth, authRoutes)
 
 
 app.get('/', (req, res) => {
