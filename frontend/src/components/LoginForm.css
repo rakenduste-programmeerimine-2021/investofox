@@ -1,23 +1,23 @@
-.register-container {
+.login-container {
     background-color: #F0F0F0;
-    height: 396px;
+    height: 270px;
     width: 495px;
     border-radius: 15px;
     padding: 10px 15px;
 }
 
-.register-header {
+.login-header {
     text-align: left;
 }
 
-.register-title {
+.login-title {
     padding: 5px 0px;
     font-weight: 500;
     font-size: 24px;
     margin: 0px;
 }
 
-.register-content {
+.login-content {
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -27,21 +27,21 @@
     font-size: 18px;
 }
 
-.register-row {
+.login-row {
     display: flex;
     justify-content: flex-end;
     margin: 0px;
     width: 100%;
 }
 
-.register-row label {
+.login-row label {
     float: left;
     text-align: left;
     width: 100%;
     max-width: 25%;
 }
 
-.register-inputField {
+.login-inputField {
     font-family: Antic;
     font-size: 16px;
     width: 100%;
@@ -52,18 +52,37 @@
     border-radius: 5px;
 }
 
-.register-footerDiv {
+.login-footerDiv {
     text-align: right;
     width: 100%;
     padding-bottom: 15px;
 }
 
-.register-buttonsDiv {
+.login-extrasDiv {
+    float: right;
+    width: 75%;
+    height: 30px;
+    padding-bottom: 30px;
+}
+
+.login-rememberBoxDiv {
+    float: left;
+    font-size: 16px;
+    color: #222222;
+}
+
+.login-forgotPassword {
+    color: #898989;
+    font-size: 16px;
+    margin-top: 0px;
+}
+
+.login-buttonsDiv {
     float: right;
     width: 75%;
 }
 
-.register-backButton {
+.login-registerButton {
     font-family: Antic;
     font-size: 18px;
     color: #FFFFFF;
@@ -75,7 +94,7 @@
     float: left;
 }
 
-.register-registerButton {
+.login-loginButton {
     font-family: Antic;
     font-size: 18px;
     color: #FFFFFF;
