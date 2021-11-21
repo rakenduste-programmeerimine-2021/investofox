@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function LoginForm() {
     return(
         <div className="login-container">
-            <form className="login-content">
+            <form className="login-content" onSubmit={handleSubmit}>
             <div className="login-header">
                 <p className="login-title">Login</p>
             </div>
@@ -15,7 +15,10 @@ function LoginForm() {
                         type="email" 
                         name="email" 
                         placeholder="example@example.com" 
-                        className="inputField" 
+                        className="inputField"
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        email 
                     />
                 </div>
                 <div className="login-row">
@@ -25,6 +28,8 @@ function LoginForm() {
                         name="password" 
                         placeholder="Password" 
                         className="inputField" 
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
                     />
                 </div>
                 <div className="login-footerDiv">
