@@ -3,6 +3,7 @@ import './RegisterForm.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios'
+import { signup } from "../../../backend-node/src/routes/auth"
 
 function RegisterForm() {
     const [firstName, setFirstName] = useState('')
@@ -23,6 +24,8 @@ function RegisterForm() {
             email: email,
             password: password
         }
+        user.signup({firstName, lastName, email, password})
+
         console.log(user)
 
         //axios
@@ -30,9 +33,10 @@ function RegisterForm() {
             axios.post('http://localhost:8081/api/auth/signup', user)
             .then(res => {
                 console.log(res.data)
-                if(res.ok){
+                if(res){
                     const successMsg = "User registered successfully!"
                     return successMsg
+                    
                 }
 
             }).catch(error => {

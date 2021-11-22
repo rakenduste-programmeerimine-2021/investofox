@@ -92,6 +92,7 @@
     width: 160px;
     height: 40px;
     float: left;
+    cursor: pointer;
 }
 
 .login-loginButton {
@@ -103,4 +104,5 @@
     border-radius: 10px;
     width: 160px;
     height: 40px;
+    cursor: pointer;
 }
