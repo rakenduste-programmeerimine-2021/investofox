@@ -20,8 +20,8 @@ function LoginForm() {
             axios.post("http://localhost:8081/api/auth/login", user)
             .then(res => {
                 const returnData = JSON.stringify(user)
-                console.log(returnData)
-                if(res.token && res.ok){
+                console.log(user)
+                if(res){
                     console.log("Succesfuly logged in!")
                 }
             }).catch(error => {
@@ -46,7 +46,7 @@ function LoginForm() {
                         type="email" 
                         name="email" 
                         placeholder="example@example.com" 
-                        className="inputField"
+                        className="login-inputField"
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         email 
@@ -58,7 +58,7 @@ function LoginForm() {
                         type="password" 
                         name="password" 
                         placeholder="Password" 
-                        className="inputField" 
+                        className="login-inputField" 
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
