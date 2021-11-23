@@ -1,12 +1,13 @@
 import React from 'react';
 import './LoginForm.css';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios'
 
 function LoginForm() {
     const [password, setPassword] = useState('')
-    const [email, setEmail] = useState('') 
+    const [email, setEmail] = useState('')
+    const [redirect, setRedirect] = useState(false) 
 
     const handleSubmit = async(value) =>{
         value.preventDefault()
@@ -16,20 +17,28 @@ function LoginForm() {
             password: password
         }
 
-        try{
-            axios.post("http://localhost:8081/api/auth/login", user)
-            .then(res => {
-                const returnData = JSON.stringify(user)
+        await fetch('http://localhost:8081/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: "include",
+            body: JSON.stringify(user)
+        }).then((res) => {
+            if(res.ok)
+            setRedirect(true)
                 console.log(user)
-                if(res){
-                    console.log("Succesfuly logged in!")
-                }
-            }).catch(error => {
-                console.log(error)
-            })
-        }catch(error){
-            console.error(error)
-        }
+                console.log("User registered successfully!")
+        }).catch((e) => {
+            console.error(e)
+        })
+
+
+
+    }
+
+    if(redirect){
+        return <Redirect to="/portfolio" />
     }
 
 
