@@ -77,13 +77,14 @@ exports.signup = async (req, res) => {
 
   //not sure if this works, probably not
   exports.getUsers = async (req, res) => {
-    const User = await User.find({});
-
+    const { id } = req.params;
+    const User = await User.find({id});
+    console.log(User, res)
     res.status(200).send(User);
   }
 
   exports.deleteUser = async (req, res) => {
-    const { id } = req.params;
+    const { id } = req.body;
   
     const User = await User.findOneAndDelete({ _id: id })
   
