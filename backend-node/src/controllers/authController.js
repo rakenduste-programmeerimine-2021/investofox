@@ -18,13 +18,12 @@ exports.login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch)
       throw Error("Login information is not correct");
-
-    const userTemplate = {
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email,
-    };
+      const userTemplate = {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email,
+      };
 
     const token = jwt.sign(userTemplate, process.env.JWT_SECRET);
 
@@ -76,20 +75,34 @@ exports.signup = async (req, res) => {
   }
 
   //not sure if this works, probably not
-  exports.getUsers = async (req, res) => {
+  exports.getUser = async (req, res) => {
     const { id } = req.params;
-    const User = await User.find({id});
-    console.log(User, res)
-    res.status(200).send(User);
+
+    try{
+      const user = await User.find({id});
+      if(!user)
+      console.log("Sorry, that user does not exist")
+
+      res.status(200).send(user).json({ message: "User found!" });
+
+    }catch(error){
+      res.status(400).json({ error: e.message })
+    }
+
   }
 
   exports.deleteUser = async (req, res) => {
-    const { id } = req.body;
+    try{
+      const { id } = req.params;
   
-    const User = await User.findOneAndDelete({ _id: id })
-  
-    if (!User) res.status(404).send("No user with that id found")
-  
-    res.status(200).send(`Successfully deleted the following user: \n ${User}`)
+      const User = await User.findOneAndDelete({ _id: id })
+    
+      if (!User) res.status(404).send("No user with that id found")
+    
+      res.status(200).send(`Successfully deleted the following user: \n ${User}`)
+    }catch(e){
+      res.status(400).json({ error: e.message })
+    }
+
   }
 }

@@ -1,9 +1,5 @@
-docker-compose run --rm --no-deps backend-node install
-
-cd frontend
-npm install
 
 cd local-dev
-docker-compose up -d
+docker-compose build
 
-localhost:3000
+http://localhost:3000
