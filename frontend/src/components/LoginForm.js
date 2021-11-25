@@ -2,7 +2,6 @@ import React from 'react';
 import './LoginForm.css';
 import { Link, Redirect } from 'react-router-dom';
 import { useState } from 'react';
-import axios from 'axios'
 
 function LoginForm() {
     const [password, setPassword] = useState('')
@@ -27,7 +26,8 @@ function LoginForm() {
         }).then((res) => {
             if(res.ok)
             setRedirect(true)
-                console.log(res.json())
+                const returnedData = res.json()
+                console.log(returnedData)
                 console.log("User sign-in successful!")
         }).catch((e) => {
             console.error(e)
