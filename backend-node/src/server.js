@@ -18,7 +18,8 @@ app.use(express.json());
 app.use(cors(corsOptions));
 
 
-app.use('/api/auth', authRoutes)
+app.use('/api/auth',jwtAuth, authRoutes)
+
 
 
 //this should have login auth enabled
