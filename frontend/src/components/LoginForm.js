@@ -27,8 +27,8 @@ function LoginForm() {
         }).then((res) => {
             if(res.ok)
             setRedirect(true)
-                console.log(user)
-                console.log("User registered successfully!")
+                console.log(res.json())
+                console.log("User sign-in successful!")
         }).catch((e) => {
             console.error(e)
         })

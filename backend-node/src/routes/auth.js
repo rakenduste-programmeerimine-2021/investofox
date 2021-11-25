@@ -37,13 +37,8 @@ router.post("/signup", [
         .withMessage("Must be at least 6 characters long")
 ], validationMiddleware, authController.signup)
 
-router.get("/user/:id", function(req,res){authController.getUsers})
+//router.get("/user/:id",validationMiddleware, authController.getUsers)
 
-//router.get("/user/:id", [], validationMiddleware, authController.getUsers)
-/*router.delete("/delete/:id",[
-    check("email")
-    .exists()
-    .withMessage("The user does not exist")
-], validationMiddleware, authController.deleteUser) */
+//router.delete("/delete/:id", authController.deleteUser)
 
 module.exports = router
