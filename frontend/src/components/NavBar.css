@@ -1,13 +1,75 @@
+.page {
+    display: flex;
+    background-color: #EFEFEF;
+}
+
 .leftBar {
-    width: 220px;
-    height: 100%;
     color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
     background-color: #222222;
-    padding: 25px 0px 25px 0px;
+    width: 260px;
+    height: 100vh;
     text-align: center;
 }
 
+.topHalf {
+    display: flex-start;
+}
+
 .logo {
+    padding: 25px 0px 25px 0px;
     width: 157px;
     height: 97px;
+}
+
+.navBarButtonsDiv {
+    padding: 30px 0px 30px 0px;
+}
+
+.navBarButton {
+    color: #EFEFEF;
+    font-family: Antic;
+    font-size: 24px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    width: 230px;
+    height: 45px;
+    margin: 10px 0px;
+}
+
+.bottomHalf {
+    display: flex-end;
+}
+
+.settingsButton {
+    color: #EFEFEF;
+    font-family: Antic;
+    font-size: 24px;
+    border: none;
+    background-color: transparent;
+    width: 240px;
+    padding: 15px 0px 15px 0px;
+}
+
+.message {
+    font-family: Antic;
+    color: #808080;
+    font-size: 14px;
+    float: bottom;
+}
+
+.topBar {
+    display: flex;
+    flex-direction: row;
+    width: 87vw;
+    height: 50px;
+    background-color: #222222;
+}
+
+.content {
+    padding: 20px 30px;
 }
