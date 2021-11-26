@@ -2,26 +2,26 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 import logo from '../InvestoFoxLogo.svg';
+import profileIcon from '../IFicon.png';
 import './NavBar.css';
 
-function NavBar(){
-
-    //let s = "no probs B)";
-
+const NavBar = ({children}) => {
     return(
         <div className="page">
             <div className="leftBar">
                 <div className="topHalf">
-                    <img src={logo} alt="InvestoFox logo" className="logo" />
+                    <Link to="./portfolio">
+                        <img src={logo} alt="InvestoFox logo" className="logo" />
+                    </Link>
                     <div className="navBarButtonsDiv">
                         <Link to="./portfolio">
                             <button className="navBarButton">Portfolio</button>
                         </Link>
-                        <Link to="./addOrder">
-                        <button className="navBarButton">Add order</button>
+                        <Link to="./add-order">
+                            <button className="navBarButton">Add order</button>
                         </Link>
                         <Link to="./order">
-                        <button className="navBarButton">Order</button>
+                            <button className="navBarButton">Order</button>
                         </Link>
                     </div>
                 </div>
@@ -34,8 +34,15 @@ function NavBar(){
             </div>
             <div className="temp">
                 <div className="topBar">
+                    <div className="titleContainer">
+                        <p className="currentPageTitle">My portfolio</p>
+                    </div>
+                    <div className="userProfileContainer">
+                        <img src={profileIcon} className="profileIcon" alt="user icon" />
+                    </div>
                 </div>
                 <div className="content">
+                    {children}
                 </div>
             </div>
         </div>

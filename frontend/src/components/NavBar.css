@@ -14,8 +14,8 @@
     height: 99.8vh;
     text-align: center;
     border-style: solid;
-    border-width: 0.5px;
-    border-color: #808080;
+    border-width: 1px;
+    border-color: #3D3D3D;
 }
 
 .topHalf {
@@ -71,13 +71,35 @@
     display: flex;
     flex-direction: row;
     width: 86.5vw;
-    height: 50px;
+    height: 80px;
     background-color: #222222;
     border-style: solid;
-    border-width: 0.5px;
-    border-color: #808080;
+    border-width: 1px;
+    border-color: #3D3D3D;
+    justify-content: space-between;
+}
+
+.titleContainer {
+    display: flex-start;
+}
+
+.currentPageTitle {
+    color: #FFFFFF;
+    font-family: Antic;
+    font-size: 26px;
+    padding-left: 20px;
+}
+
+.userProfileContainer {
+    display: flex-end;
+}
+
+.profileIcon {
+    height: 50px;
+    width: 60px;
+    padding: 15px 15px 15px 5px;
 }
 
 .content {
-    padding: 20px 30px;
+    padding: 10px 30px;
 }
