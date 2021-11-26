@@ -1,6 +1,6 @@
 import React from 'react';
 import './RegisterForm.css';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios'
 
@@ -8,7 +8,8 @@ function RegisterForm() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [password, setPassword] = useState('')
-    const [email, setEmail] = useState('') 
+    const [email, setEmail] = useState('')
+    const [redirect, setRedirect] = useState(false) 
 
 
     const handleSubmit = async (value) => {
@@ -23,16 +24,15 @@ function RegisterForm() {
             email: email,
             password: password
         }
-        console.log(user)
-
+        //user.signup({firstName, lastName, email, password})
         //axios
         try{
             axios.post('http://localhost:8081/api/auth/signup', user)
             .then(res => {
                 console.log(res.data)
-                if(res.ok){
-                    const successMsg = "User registered successfully!"
-                    return successMsg
+                if(res){
+                    console.log("User registered successfully!")
+                    setRedirect(true)
                 }
 
             }).catch(error => {
@@ -60,6 +60,11 @@ function RegisterForm() {
         }).catch((e) => {
             console.error(e)
         })*/
+    }
+
+    //redirects to portfolio page
+    if(redirect){
+        return <Redirect to="/login" />
     }
 
 
