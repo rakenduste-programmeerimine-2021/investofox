@@ -8,6 +8,8 @@ RUN mkdir -p $HOME/app
 WORKDIR $HOME/app
 
 COPY . $HOME/app
+COPY package.json ./
+COPY package-lock.json ./
 
 RUN npm install && \
     npm cache clean --force

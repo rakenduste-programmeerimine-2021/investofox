@@ -1,14 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import LoginForm from '../components/LoginForm';
+import logo from '../InvestoFoxLogo.svg';
+import { Link } from 'react-router-dom';
+import './Login.css';
 
-
-export default function Login() {
+export function Login() {
     return (
-        <div>
-            <h1>This is the login page</h1>
-            <Link to="../">
-                <button>Home</button>
-            </Link>
+        <div className="login-body">
+            <div className="login-logoContainer">
+                <Link to="/">
+                    <img src={logo} alt="InvestoFox logo" className="logo" />
+                </Link>
+            </div>
+            <div className="login-loginForm">
+                <LoginForm />
+            </div>
         </div>
     )
 }
+
+export default Login;

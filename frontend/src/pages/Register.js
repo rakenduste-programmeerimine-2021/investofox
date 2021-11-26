@@ -1,16 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
+import React from 'react';
+import RegisterForm from '../components/RegisterForm';
+import logo from '../InvestoFoxLogo.svg';
+import { Link } from 'react-router-dom';
+import './Register.css';
 
 export function Register() {
     return (
-        <div>
-            <h1>This is the register page</h1>
+        <div className="register-body">
+            <div className="register-logoContainer">
             <Link to="/">
-                <button>Home</button>
+                <img src={logo} alt="InvestoFox logo" className="register-logo" />
             </Link>
+            </div>
+            <div className="register-registerForm">
+                <RegisterForm />
+            </div>
         </div>
     )
 }
 
-export default Register
+export default Register;
