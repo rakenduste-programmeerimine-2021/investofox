@@ -9,7 +9,7 @@ export function Login() {
         <div className="login-body">
             <div className="login-logoContainer">
                 <Link to="/">
-                    <img src={logo} alt="InvestoFox logo" className="logo" />
+                    <img src={logo} alt="InvestoFox logo" className="login-logo" />
                 </Link>
             </div>
             <div className="login-loginForm">
