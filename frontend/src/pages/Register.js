@@ -8,9 +8,9 @@ export function Register() {
     return (
         <div className="register-body">
             <div className="register-logoContainer">
-            <Link to="/">
-                <img src={logo} alt="InvestoFox logo" className="register-logo" />
-            </Link>
+                <Link to="/">
+                    <img src={logo} alt="InvestoFox logo" className="register-logo" />
+                </Link>
             </div>
             <div className="register-registerForm">
                 <RegisterForm />
