@@ -8,53 +8,31 @@ export function PortfolioForm() {
     const [stockChartYValues, setStockChartYValues] = useState([])
     const [loading, setLoading]= useState(true)
 
-    const handleSubmit = async(value) =>{
-        value.preventDefault()
+    const handleSubmit = async() =>{
         const apikey= "M7DSRJECMBCEEWGF"
         const ticker = symbol
 
         try{
             axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&apikey=${apikey}`)
             .then(res =>{
+                const returnData = JSON.stringify(res)
 
                 if(res.ok){
+                    const data = res.data
+                    console.log(data)
                     setLoading(false)
                 }
+                console.log(res.data)
                 const data = res.data
-                console.log(data, "this is Data")
-
-
-                const getStocks = (date, price) =>{
-                    return(
-                        <div>
-                            <li>
-                                {data.map(post =>{
-                                    return(
-                                        <div key={ post.id}>
-                                            <h4>{ stockChartXValues}</h4>
-                                            <h4>{ stockChartYValues}</h4>
-                                        </div>
-                                    )
-                                })}
-                            </li>
-                        </div>
-                    )
-                }
+                console.log(data)
 
                 for( var key in data['Time Series (Daily)']) {
-                    
-
-                    setStockChartXValues([...stockChartXValues, key[10]])
-
-                    setStockChartYValues([data[`Time Series (Daily)`]
-                    [key]['4. close']])
-                    //console.log("Date: " + stockChartXValues)
-                    //console.log("Close price: " + stockChartYValues)
-                    //getStocks(stockChartXValues, stockChartYValues )
+                    setStockChartXValues(key)
+                    setStockChartYValues(data[`Time Series (Daily)`]
+                    [key]['1. open'])
+                    console.log("this is it: " + stockChartXValues)
+                    console.log("this is that: " + stockChartYValues)
                 }
-                console.log(stockChartXValues, "key values")
-                console.log(setStockChartXValues([]))
-
             }).catch(e =>{
                 console.error(e)
             })
@@ -62,6 +40,8 @@ export function PortfolioForm() {
             console.log(error)
         }
         }
+
+
 
         return (
             <div className="login-container">
@@ -87,6 +67,11 @@ export function PortfolioForm() {
                             <div>
                                 <h1>Date: {stockChartXValues}</h1>
                                 <p>Price: {stockChartYValues}</p>
+                                <ul>
+                                {stockChartXValues.map(item =>{
+                                            <li key={item.id}>{item.value}</li>
+                                        })}
+                                </ul>
                             </div>
                         )}
                     </li>
