@@ -5,7 +5,7 @@ import logo from '../InvestoFoxLogo.svg';
 import profileIcon from '../IFicon.png';
 import './NavBar.css';
 
-const NavBar = ({children}) => {
+const NavBar = ({title, children}) => {
     return(
         <div className="page">
             <div className="leftBar">
@@ -35,7 +35,7 @@ const NavBar = ({children}) => {
             <div className="temp">
                 <div className="topBar">
                     <div className="titleContainer">
-                        <p className="currentPageTitle">My portfolio</p>
+                        <p className="currentPageTitle">{title}</p>
                     </div>
                     <div className="userProfileContainer">
                         <img src={profileIcon} className="profileIcon" alt="user icon" />

@@ -17,22 +17,22 @@ const App = () => {
         <Switch>
           <Route exact path={["/", "/login", "/register"]} component={authPages}/>
           <Route exact path={"/portfolio"}>
-            <NavBar>
+            <NavBar title="My portfolio">
               <h1>Portfolio page</h1> {/* Just a placeholder until the actual component is ready */}
             </NavBar>
           </Route>
           <Route exact path={"/add-order"}>
-            <NavBar>
+            <NavBar title="Add order">
               <h1>Add order page</h1> {/* Just a placeholder until the actual component is ready */}
             </NavBar>
           </Route>
           <Route exact path={"/order"}>
-            <NavBar>
+            <NavBar title="Order">
               <h1>Order page</h1> {/* Just a placeholder until the actual component is ready */}
             </NavBar>
           </Route>
           <Route exact path={"/settings"}>
-            <NavBar>
+            <NavBar title="Settings">
               <h1>Settings</h1> {/* Just a placeholder until the actual component is ready */}
             </NavBar>
           </Route>
