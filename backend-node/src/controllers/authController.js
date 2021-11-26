@@ -37,7 +37,7 @@ exports.login = async (req, res) => {
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
-};
+}
 
 exports.signup = async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
@@ -73,17 +73,21 @@ exports.signup = async (req, res) => {
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
+}
 
   //not sure if this works, probably not
-  exports.getUser = async (req, res) => {
+  exports.getUsers = async (req, res) => {
     const { id } = req.params;
 
     try{
       const user = await User.find({id});
-      if(!user)
-      console.log("Sorry, that user does not exist")
 
-      res.status(200).send(user).json({ message: "User found!" });
+      if(!user){
+        console.log('Sorry, no users to display')
+      }
+      
+
+      res.status(200).send(user).json({ message: `User found!` });
 
     }catch(error){
       res.status(400).json({ error: e.message })
@@ -95,14 +99,13 @@ exports.signup = async (req, res) => {
     try{
       const { id } = req.params;
   
-      const User = await User.findOneAndDelete({ _id: id })
+      const deleteUser = await User.findOneAndDelete({ _id: id })
     
-      if (!User) res.status(404).send("No user with that id found")
+      if (!deleteUser) res.status(404).send("No user with that id found")
     
-      res.status(200).send(`Successfully deleted the following user: \n ${User}`)
+      res.status(200).send(`Successfully deleted the following user: \n ${deleteUser}`)
     }catch(e){
       res.status(400).json({ error: e.message })
     }
 
   }
-}
