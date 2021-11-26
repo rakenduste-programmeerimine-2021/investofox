@@ -11,8 +11,11 @@
     align-items: center;
     background-color: #222222;
     width: 260px;
-    height: 100vh;
+    height: 99.8vh;
     text-align: center;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: #808080;
 }
 
 .topHalf {
@@ -29,7 +32,7 @@
     padding: 30px 0px 30px 0px;
 }
 
-.navBarButton {
+.navBarButton, .settingsButton {
     color: #EFEFEF;
     font-family: Antic;
     font-size: 24px;
@@ -41,18 +44,20 @@
     margin: 10px 0px;
 }
 
-.bottomHalf {
-    display: flex-end;
-}
-
-.settingsButton {
+.navBarButton:hover, .settingsButton:hover {
     color: #EFEFEF;
     font-family: Antic;
     font-size: 24px;
     border: none;
-    background-color: transparent;
-    width: 240px;
-    padding: 15px 0px 15px 0px;
+    border-radius: 10px;
+    background-color: #D35E0D;
+    width: 230px;
+    height: 45px;
+    margin: 10px 0px;
+}
+
+.bottomHalf {
+    display: flex-end;
 }
 
 .message {
@@ -65,9 +70,12 @@
 .topBar {
     display: flex;
     flex-direction: row;
-    width: 87vw;
+    width: 86.5vw;
     height: 50px;
     background-color: #222222;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: #808080;
 }
 
 .content {
