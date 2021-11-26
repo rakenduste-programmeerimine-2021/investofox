@@ -5,6 +5,7 @@ const jwtAuth = require("./middleware/jwtAuth")
 require("dotenv").config()
 const cors = require('cors');
 const authRoutes = require('./routes/auth')
+const orderRoutes = require('./routes/order')
 
 const corsOptions = {
   origin: 'http://localhost:3000',
@@ -20,6 +21,7 @@ app.use(cors(corsOptions));
 
 app.use('/api/auth', authRoutes)
 app.use('/portfolio', jwtAuth)
+app.use('/api/order', orderRoutes)
 
 
 
