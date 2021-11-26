@@ -39,6 +39,6 @@ router.post("/signup", [
 
 //router.get("/user/:id",validationMiddleware, authController.getUsers)
 
-//router.delete("/delete/:id", authController.deleteUser)
+router.delete("/delete/:id", authController.deleteUser)
 
 module.exports = router
