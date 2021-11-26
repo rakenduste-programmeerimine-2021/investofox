@@ -37,7 +37,7 @@ router.post("/signup", [
         .withMessage("Must be at least 6 characters long")
 ], validationMiddleware, authController.signup)
 
-//router.get("/user/:id",validationMiddleware, authController.getUsers)
+router.get("/users/:id",validationMiddleware, authController.getUsers)
 
 router.delete("/delete/:id", authController.deleteUser)
 
