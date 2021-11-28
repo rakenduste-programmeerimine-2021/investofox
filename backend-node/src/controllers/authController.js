@@ -120,6 +120,7 @@ exports.getUsers = async (req, res) => {
   }
 
 }
+
 exports.getOneUser = async (req, res) => {
   const {
     id
@@ -168,19 +169,30 @@ exports.deleteUser = async (req, res) => {
 
 exports.addOrder = async (req, res) => {
 
+  const {email} = req.params
+
   const {
-    email,
-    order
+    ticker,
+    amount,
+    price,
+    date,
+    comments
+
   } = req.body;
 
-
-
-  try {
+  try{
     const user = await User.findOneAndUpdate({
       email: email
     }, {
       $push: {
-        orders: order
+        orders: {
+          ticker: ticker,
+          amount: amount,
+          price: price,
+          date: date,
+          comments: comments
+
+        }
       },
     })
 
@@ -189,10 +201,46 @@ exports.addOrder = async (req, res) => {
     }
 
     res.status(200).send(user).json({
-      message: `Order: ${newOrder} \n has been added to ${user}`
+      message: `Order: ${orders} \n has been added to ${user}`
     });
 
-  } catch (error) {
+  }catch(error) {
+    res.status(400).json({
+      error: error.message
+    })
+  }
+}
+
+exports.deleteOrder = async (req, res) => {
+
+  const {email, id} = req.params
+
+
+  try{
+    const user = await User.findByIdAndDelete({
+      _id: id
+    }, {
+      $push: {
+        orders: {
+          ticker: ticker,
+          amount: amount,
+          price: price,
+          date: date,
+          comments: comments
+
+        }
+      },
+    })
+
+    if (!user) {
+      console.log('Sorry that user does not exist')
+    }
+
+    res.status(200).send(user).json({
+      message: `Order: ${orders} \n has been added to ${user}`
+    });
+
+  }catch(error) {
     res.status(400).json({
       error: error.message
     })

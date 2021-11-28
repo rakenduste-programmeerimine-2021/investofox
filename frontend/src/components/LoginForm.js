@@ -2,13 +2,13 @@ import React from 'react';
 import './LoginForm.css';
 import {Redirect, Link } from 'react-router-dom';
 import { useState, useContext } from 'react';
-import { Context } from "../store"
+// import { Context } from "../store"
 
 function LoginForm() {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const [redirect, setRedirect] = useState(false) 
-    const [state, dispatch] = useContext(Context)
+    //const [state, dispatch] = useContext(Context)
 
     const handleSubmit = async(value) =>{
         value.preventDefault()

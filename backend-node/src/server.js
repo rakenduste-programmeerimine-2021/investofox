@@ -6,11 +6,10 @@ require("dotenv").config()
 const cors = require('cors');
 const authRoutes = require('./routes/auth')
 const orderRoutes = require('./routes/order')
-const request = require('request')
 const axios = require('axios')
+
 const corsOptions = {
   origin: 'http://localhost:3000',
-  credentials: true
 }
 
 const app = express()
