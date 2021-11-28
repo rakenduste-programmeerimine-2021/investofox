@@ -24,7 +24,3 @@ export const updateUser = array => ({
     payload: array
 })
 
-export const deleteUser = id => ({
-    type: USER_REMOVE,
-    payload: id
-})

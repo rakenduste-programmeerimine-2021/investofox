@@ -50,5 +50,6 @@ router.post("/signup", [
 router.get("/users/:id", validationMiddleware, authController.getUsers)
 router.get("/user/:id", validationMiddleware, authController.getOneUser)
 router.delete("/delete/:id", authController.deleteUser)
+router.put("/order", authController.addOrder)
 
 module.exports = router
