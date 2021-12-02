@@ -41,7 +41,7 @@
     max-width: 25%;
 }
 
-.login-inputField {
+.login-emailInputField{
     font-family: Antic;
     font-size: 16px;
     width: 100%;
@@ -50,6 +50,28 @@
     border-color: #bebebe;
     border-width: 0.5px;
     border-radius: 5px;
+}
+
+.login-passwordInputField {
+    font-family: Antic;
+    font-size: 16px;
+    width: 90%;
+    height: 28px;
+    border-style: solid;
+    border-color: #bebebe;
+    border-width: 0.5px;
+    border-radius: 5px;
+}
+
+.login-passwordToggler {
+    font-family: Antic;
+    font-size: 16px;
+    margin-left: 10px;
+    width: 15%;
+    border: none;
+    border-radius: 5px;
+    color: #F0F0F0;
+    background-color: #afafaf;
 }
 
 .login-footerDiv {

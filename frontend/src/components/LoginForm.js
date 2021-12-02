@@ -8,6 +8,7 @@ function LoginForm() {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const [redirect, setRedirect] = useState(false) 
+    const [visible, setVisible] = useState("password")
     //const [state, dispatch] = useContext(Context)
 
     const handleSubmit = async(value) =>{
@@ -59,7 +60,7 @@ function LoginForm() {
                         type="email" 
                         name="email" 
                         placeholder="example@example.com" 
-                        className="login-inputField"
+                        className="login-emailInputField"
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         email 
@@ -68,13 +69,19 @@ function LoginForm() {
                 <div className="login-row">
                     <label>Password</label>
                     <input 
-                        type="password" 
+                        type={visible} 
                         name="password" 
                         placeholder="Password" 
-                        className="login-inputField" 
+                        className="login-passwordInputField" 
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
+                    <button 
+                        className="login-passwordToggler"
+                        onClick={() => {visible === "text" ? setVisible("password") : setVisible("text")}}
+                    >
+                        Show
+                    </button>
                 </div>
                 <div className="login-footerDiv">
                     <div className="login-extrasDiv">
