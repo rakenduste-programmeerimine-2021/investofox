@@ -51,4 +51,7 @@ router.get("/users/:id", validationMiddleware, authController.getUsers)
 router.get("/user/:id", validationMiddleware, authController.getOneUser)
 router.delete("/delete/:id", authController.deleteUser)
 
+//order actions
+router.put("/order/:email", authController.addOrder)
+
 module.exports = router
