@@ -80,7 +80,7 @@ function LoginForm() {
                         className="login-passwordToggler"
                         onClick={() => {visible === "text" ? setVisible("password") : setVisible("text")}}
                     >
-                        Show
+                        {visible === "text" ? "Hide" : "Show"}
                     </button>
                 </div>
                 <div className="login-footerDiv">
