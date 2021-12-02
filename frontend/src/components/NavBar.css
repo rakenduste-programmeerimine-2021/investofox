@@ -1,0 +1,105 @@
+.page {
+    display: flex;
+    background-color: #EFEFEF;
+}
+
+.leftBar {
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    background-color: #222222;
+    width: 260px;
+    height: 99.8vh;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #3D3D3D;
+}
+
+.topHalf {
+    display: flex-start;
+}
+
+.logo {
+    padding: 25px 0px 25px 0px;
+    width: 157px;
+    height: 97px;
+}
+
+.navBarButtonsDiv {
+    padding: 30px 0px 30px 0px;
+}
+
+.navBarButton, .settingsButton {
+    color: #EFEFEF;
+    font-family: Antic;
+    font-size: 24px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    width: 230px;
+    height: 45px;
+    margin: 10px 0px;
+}
+
+.navBarButton:hover, .settingsButton:hover {
+    color: #EFEFEF;
+    font-family: Antic;
+    font-size: 24px;
+    border: none;
+    border-radius: 10px;
+    background-color: #D35E0D;
+    width: 230px;
+    height: 45px;
+    margin: 10px 0px;
+}
+
+.bottomHalf {
+    display: flex-end;
+}
+
+.message {
+    font-family: Antic;
+    color: #808080;
+    font-size: 14px;
+    float: bottom;
+}
+
+.topBar {
+    display: flex;
+    flex-direction: row;
+    width: 86.5vw;
+    height: 80px;
+    background-color: #222222;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #3D3D3D;
+    justify-content: space-between;
+}
+
+.titleContainer {
+    display: flex-start;
+}
+
+.currentPageTitle {
+    color: #FFFFFF;
+    font-family: Antic;
+    font-size: 26px;
+    padding-left: 20px;
+}
+
+.userProfileContainer {
+    display: flex-end;
+}
+
+.profileIcon {
+    height: 50px;
+    width: 60px;
+    padding: 15px 15px 15px 5px;
+}
+
+.content {
+    padding: 10px 30px;
+}
