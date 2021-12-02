@@ -123,12 +123,12 @@ exports.getUsers = async (req, res) => {
 
 exports.getOneUser = async (req, res) => {
   const {
-    id
+    email
   } = req.params;
 
   try {
     const user = await User.findOne({
-      id
+      email
     });
 
     if (!user) {

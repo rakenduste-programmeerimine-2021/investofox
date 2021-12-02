@@ -48,11 +48,11 @@ router.post("/signup", [
 ], validationMiddleware, authController.signup)
 
 router.get("/users", validationMiddleware, authController.getUsers)
-router.get("/user/:id", validationMiddleware, authController.getOneUser)
+router.get("/user/:email", validationMiddleware, authController.getOneUser)
 router.delete("/delete/:id", validationMiddleware, authController.deleteUser)
 
 //order actions
-router.put("/order/:email", validationMiddleware, authController.addOrder)
-router.get("/get-orders/:email", authController.getOrders)
+router.put("/add-order/:email", validationMiddleware, authController.addOrder)
+router.get("/orders", authController.getOrders)
 
 module.exports = router

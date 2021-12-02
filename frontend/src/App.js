@@ -3,7 +3,7 @@ import Register from "./pages/Register";
 import NavBar from './components/NavBar';
 import Login from "./pages/Login";
 import Portfolio from "./pages/Portfolio";
-import Order from "./pages/Order";
+import AddOrder from "./pages/Order";
 import OrderList from "./pages/OrderList";
 
 const authPages = () => (
@@ -26,12 +26,12 @@ const App = () => {
           </Route>
           <Route exact path={"/add-order"}>
             <NavBar title="Add order">
-              <h1>Add order page</h1> {/* Just a placeholder until the actual component is ready */}
+              <AddOrder />
             </NavBar>
           </Route>
-          <Route exact path={"/order"}>
+          <Route exact path={"/orders"}>
             <NavBar title="Order">
-              <h1>Order page</h1> {/* Just a placeholder until the actual component is ready */}
+              <OrderList />
             </NavBar>
           </Route>
           <Route exact path={"/settings"}>

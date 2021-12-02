@@ -12,25 +12,14 @@ import { Checkbox } from '@mui/material';
 
 
 export default function OrderList() {
-
-/*function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
-  const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-  ];*/
   
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  const userId = "619aa016692c06db2976ea07"
+  const userEmail = "liismik@tlu.ee"
   
   const getOrders = async() =>{
-      axios.get(`http://localhost:8081/api/auth/user/${userId}`)
+      axios.get(`http://localhost:8081/api/auth/user/${userEmail}`)
       .then(response => {
           if(response){
               console.log("Good fetch")
@@ -50,6 +39,7 @@ export default function OrderList() {
 
 
   const data = orders.orders
+
   //if data is being fetched
   if(loading) {
     return <p>Data is loading...</p>;
@@ -57,11 +47,12 @@ export default function OrderList() {
   
   return (
     <>
-    <h1 style={{ textAlign: "center"}}>Your orders, {orders.firstName}</h1>
+    <h1 style={{ textAlign: "center", display: "block"}}>Your orders, {orders.firstName}</h1>
     <TableContainer component={Paper}>
-      <Table sx={{ maxWidth: 1000 , margin: "auto", marginTop: 10, minHeight: 350}} aria-label="simple table">
+      <Table sx={{ maxWidth: 2000 , margin: "auto", marginTop: 10, minHeight: 350}} aria-label="simple table">
         <TableHead>
-          <TableRow sx={{maxHeight: 200}}>
+          <TableRow sx={{maxHeight: 600}}>
+            <TableCell></TableCell>
             <TableCell>Ticker</TableCell>
             <TableCell align="right">Amount</TableCell>
             <TableCell align="right">Price(€)</TableCell>
@@ -76,9 +67,7 @@ export default function OrderList() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
             <TableCell padding= "checkbox">
-                <Checkbox
-                    color="primary"
-                />
+                <Checkbox color="primary" />
             </TableCell>
               <TableCell component="th" scope="row">
                 {row.ticker}
@@ -87,10 +76,7 @@ export default function OrderList() {
               <TableCell align="right">{row.amount}</TableCell>
               <TableCell align="right">{row.date}</TableCell>
               <TableCell align="right">{row.comments}</TableCell>
-
             </TableRow>
-        
-
           ))}
         </TableBody>
       </Table>
