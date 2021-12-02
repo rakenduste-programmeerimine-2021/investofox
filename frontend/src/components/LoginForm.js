@@ -1,19 +1,21 @@
 import React from 'react';
 import './LoginForm.css';
-import { Link, Redirect } from 'react-router-dom';
-import { useState } from 'react';
+import {Redirect, Link } from 'react-router-dom';
+import { useState, useContext } from 'react';
+// import { Context } from "../store"
 
 function LoginForm() {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const [redirect, setRedirect] = useState(false) 
+    //const [state, dispatch] = useContext(Context)
 
     const handleSubmit = async(value) =>{
         value.preventDefault()
 
         const user = {
             email: email,
-            password: password
+            password: password,
         }
 
         await fetch('http://localhost:8081/api/auth/login', {
@@ -21,14 +23,16 @@ function LoginForm() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            credentials: "include",
             body: JSON.stringify(user)
         }).then((res) => {
-            if(res.ok)
-            setRedirect(true)
-                const returnedData = res.json()
-                console.log(returnedData)
+            if(res.ok){
+                setRedirect(true)
                 console.log("User sign-in successful!")
+            }else{
+                console.log("Something went wrong")
+            }
+
+        
         }).catch((e) => {
             console.error(e)
         })

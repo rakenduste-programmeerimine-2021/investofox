@@ -23,6 +23,7 @@ exports.login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch)
       throw Error("Login information is not correct");
+
     const userTemplate = {
       id: user.id,
       firstName: user.firstName,
@@ -30,7 +31,7 @@ exports.login = async (req, res) => {
       email,
     };
 
-    const token = jwt.sign(userTemplate, process.env.JWT_SECRET);
+    const token = jwt.sign(userTemplate, process.env.JWT_SECRET, {expiresIn: '2 hours'});
 
     if (!token) throw Error("Something critical happened: Code-101");
     //code-101 means that token was not found
@@ -51,7 +52,7 @@ exports.signup = async (req, res) => {
     firstName,
     lastName,
     email,
-    password
+    password,
   } = req.body;
 
   try {
@@ -93,7 +94,6 @@ exports.signup = async (req, res) => {
   }
 }
 
-//not sure if this works, probably not
 exports.getUsers = async (req, res) => {
   const {
     id
@@ -120,6 +120,7 @@ exports.getUsers = async (req, res) => {
   }
 
 }
+
 exports.getOneUser = async (req, res) => {
   const {
     id
@@ -141,10 +142,9 @@ exports.getOneUser = async (req, res) => {
 
   } catch (error) {
     res.status(400).json({
-      error: e.message
+      error: error.message
     })
   }
-
 }
 
 exports.deleteUser = async (req, res) => {
@@ -165,5 +165,84 @@ exports.deleteUser = async (req, res) => {
       error: e.message
     })
   }
+}
 
+exports.addOrder = async (req, res) => {
+
+  const {email} = req.params
+
+  const {
+    ticker,
+    amount,
+    price,
+    date,
+    comments
+
+  } = req.body;
+
+  try{
+    const user = await User.findOneAndUpdate({
+      email: email
+    }, {
+      $push: {
+        orders: {
+          ticker: ticker,
+          amount: amount,
+          price: price,
+          date: date,
+          comments: comments
+
+        }
+      },
+    })
+
+    if (!user) {
+      console.log('Sorry that user does not exist')
+    }
+
+    res.status(200).send(user).json({
+      message: `Order: ${orders} \n has been added to ${user}`
+    });
+
+  }catch(error) {
+    res.status(400).json({
+      error: error.message
+    })
+  }
+}
+
+exports.deleteOrder = async (req, res) => {
+
+  const {email, id} = req.params
+
+
+  try{
+    const user = await User.findByIdAndDelete({
+      _id: id
+    }, {
+      $push: {
+        orders: {
+          ticker: ticker,
+          amount: amount,
+          price: price,
+          date: date,
+          comments: comments
+
+        }
+      },
+    })
+
+    if (!user) {
+      console.log('Sorry that user does not exist')
+    }
+
+    res.status(200).send(user).json({
+      message: `Order: ${orders} \n has been added to ${user}`
+    });
+
+  }catch(error) {
+    res.status(400).json({
+      error: error.message
+    })
+  }
 }
