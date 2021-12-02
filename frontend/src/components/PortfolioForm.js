@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react'
 
 export function PortfolioForm() {
 
-    const [symbol, setSymbol] = useState([])
+    const [symbol, setSymbol] = useState('')
     const [stockChartXValues, setStockChartXValues] = useState([])
     const [stockChartYValues, setStockChartYValues] = useState([])
+    const [stockChartZValues, setStockChartZValues] = useState([])
     const [loading, setLoading]= useState(true)
 
     const handleSubmit = async(value) =>{
@@ -13,58 +14,40 @@ export function PortfolioForm() {
         const apikey= "M7DSRJECMBCEEWGF"
         const tickers = symbol
 
-        let completed = 0
-        const results = []
-        console.log(tickers)
-        for(let i = 0; i < tickers.length; i++) {
-            const oneTicker = tickers[i]
-
+        try{
             axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${tickers}&apikey=${apikey}`)
-                .then((response) =>{
-                    completed += 1
-
-                    results.push(response.data['Meta Data'])
-                    if(completed === tickers.length) {
-                        //All tickers have finished their response
-                        console.log('completed')
-                    }
-
-                    console.log(tickers)
-
-
-                }).catch(e =>{
-                    console.error(e)
-                })
-
-        }
-
-       /* try{
-            axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&apikey=${apikey}`)
             .then(res =>{
-                const returnData = JSON.stringify(res)
-
-                if(res.ok){
-                    const data = res.data
-                    console.log(data)
+                if(res){
+                    console.log(res.data)
                     setLoading(false)
                 }
-                console.log(res.data)
+
                 const data = res.data
-                console.log(data)
 
                 for( var key in data['Time Series (Daily)']) {
                     setStockChartXValues(key)
                     setStockChartYValues(data[`Time Series (Daily)`]
                     [key]['4. close'])
-                    console.log("Date: " + stockChartXValues)
+                    setStockChartZValues(data[`Meta Data`]['2. Symbol'])
                     console.log("Price: " + stockChartYValues)
+                    console.log("symbol: " + stockChartZValues)
+                }
+
+                if(loading){
+                    return(
+                        <div className={"login-container"}>
+                            Loading data...
+                        </div>
+                    )
                 }
             }).catch(e =>{
                 console.error(e)
             })
+
+
         }catch(error){
             console.log(error)
-        }*/
+        }
         } //end of handleSubmit
 
 
@@ -86,20 +69,12 @@ export function PortfolioForm() {
                 </form>
                 <ul className="login-container">
                     <li>
-                        <p>Ticker, price, date, etc</p>
-                        {!loading ? (
-                            <div>Loading...</div>
-                        ) : (
                             <div>
-                                <h1>Date: {stockChartXValues}</h1>
+                                <h4>Symbol: {stockChartZValues}</h4>
+                                <p>Date: {stockChartXValues}</p>
                                 <p>Price: {stockChartYValues}</p>
-                                <ul>
-                                {stockChartXValues.map(item =>{
-                                            <li key={item.id}>{item.value}</li>
-                                        })}
-                                </ul>
                             </div>
-                        )}
+                        
                     </li>
                 </ul>
             </div>

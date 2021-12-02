@@ -25,7 +25,7 @@ export default function OrderForm() {
         console.log(orders)
 
         try{
-            axios.put(`http://localhost:8081/api/auth/order/${email}`, orders)
+            axios.put(`http://localhost:8081/api/auth/add-order/${email}`, orders)
             .then((res) => {
                 if(res){
                     console.log(res.data)
@@ -80,7 +80,7 @@ export default function OrderForm() {
                 <div className="login-row">
                     <label>Price</label>
                     <input
-                        type="number"
+                        type="float"
                         name="price"
                         onChange={(e) => setPrice(e.target.value)}
                         required

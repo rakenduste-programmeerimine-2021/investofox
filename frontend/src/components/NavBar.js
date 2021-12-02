@@ -20,8 +20,8 @@ const NavBar = ({title, children}) => {
                         <Link to="./add-order">
                             <button className="navBarButton">Add order</button>
                         </Link>
-                        <Link to="./order">
-                            <button className="navBarButton">Order</button>
+                        <Link to="./orders">
+                            <button className="navBarButton">Orders</button>
                         </Link>
                     </div>
                 </div>

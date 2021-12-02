@@ -12,7 +12,7 @@ COPY package.json ./
 COPY package-lock.json ./
 
 RUN npm install && \
-    npm cache clean --force
+    npm cache clean --f
 
 ENTRYPOINT ["npm"]
 CMD ["start"]
