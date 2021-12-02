@@ -47,11 +47,12 @@ router.post("/signup", [
     .withMessage("Must be at least 6 characters long")
 ], validationMiddleware, authController.signup)
 
-router.get("/users/:id", validationMiddleware, authController.getUsers)
-router.get("/user/:id", validationMiddleware, authController.getOneUser)
-router.delete("/delete/:id", authController.deleteUser)
+router.get("/users", validationMiddleware, authController.getUsers)
+router.get("/user/:email", validationMiddleware, authController.getOneUser)
+router.delete("/delete/:id", validationMiddleware, authController.deleteUser)
 
 //order actions
-router.put("/order/:email", authController.addOrder)
+router.put("/add-order/:email", validationMiddleware, authController.addOrder)
+router.get("/orders", authController.getOrders)
 
 module.exports = router
