@@ -80,7 +80,7 @@ export default function OrderForm() {
                 <div className="login-row">
                     <label>Price</label>
                     <input
-                        type="number"
+                        type="float"
                         name="price"
                         onChange={(e) => setPrice(e.target.value)}
                         required
