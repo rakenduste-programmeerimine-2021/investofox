@@ -10,7 +10,8 @@ function RegisterForm() {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const [redirect, setRedirect] = useState(false) 
-
+    const [visible, setVisible] = useState("password")
+    const [checkVisible, setCheckVisible] = useState("password")
 
     const handleSubmit = async (value) => {
 
@@ -112,24 +113,36 @@ function RegisterForm() {
                 <div className="register-row">
                     <label>Password</label>
                     <input 
-                        type="password" 
+                        type={visible} 
                         name="password"
                         placeholder="Password" 
-                        className="register-inputField" 
+                        className="register-passwordInputField" 
                         onChange={(e) => setPassword(e.target.value)}
                         minLength= "6"
                         required
                     />
+                    <button 
+                        className="register-passwordToggler"
+                        onClick={() => {visible === "text" ? setVisible("password") : setVisible("text")}}
+                    >
+                        {visible === "text" ? "Hide" : "Show"}
+                    </button>
                 </div>
                 <div className="register-row">
                     <label>Confirm password</label>
                     <input 
-                        type="password" 
+                        type={checkVisible}
                         name="confirmpassword" 
                         placeholder="Confirm password" 
-                        className="register-inputField"
+                        className="register-passwordInputField"
                         required
                     />
+                    <button 
+                        className="register-passwordToggler"
+                        onClick={() => {checkVisible === "text" ? setCheckVisible("password") : setCheckVisible("text")}}
+                    >
+                        {checkVisible === "text" ? "Hide" : "Show"}
+                    </button>
                 </div>
                 <div className="register-footerDiv">
                     <div className="register-buttonsDiv">
