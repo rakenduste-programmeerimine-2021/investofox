@@ -36,14 +36,16 @@ export function OrderList() {
         {orders && (
           <div className={"login-content"}>
             {foo.map((order, index) => (
-              <div key={index} className={"login-container"}>
-                <h2>Ticker: {order.ticker}</h2>
-                <h3>Price: {order.price}</h3>
-                <h3>Amount: {order.amount}</h3>
-                <h3>Date: {order.date}</h3>
-                <h3>Date: {order.comments}</h3>
+              <div key={index} className={"login-"}>
+                <h2>Ticker: {order.ticker}<button>X</button></h2>
+                <h3>Price: {order.price}<button>Change</button></h3>
+                <h3>Amount: {order.amount}<button>Change</button></h3>
+                <h3>Date: {order.date}<button>Change</button></h3>
+                <h3>Date: {order.comments}<button>Change</button></h3>
                 <h3>Person: {orders.email}</h3>
+
               </div>
+              
             ))}
     
           </div>
