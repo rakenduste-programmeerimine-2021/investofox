@@ -2,9 +2,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Register from "./pages/Register";
 import NavBar from './components/NavBar';
 import Login from "./pages/Login";
-import Portfolio from "./pages/Portfolio";
+import FetchStockApi from "./pages/Api";
 import AddOrder from "./pages/Order";
 import OrderList from "./pages/OrderList";
+import PortfolioChart from "./pages/PortfolioChart";
 
 const authPages = () => (
   <div>
@@ -19,9 +20,9 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path={["/", "/login", "/register"]} component={authPages}/>
-          <Route exact path={"/portfolio"}>
-            <NavBar title="My portfolio">
-              <Portfolio />
+          <Route exact path={"/stock-api"}>
+            <NavBar title="Stock API">
+              <FetchStockApi />
             </NavBar>
           </Route>
           <Route exact path={"/add-order"}>
@@ -30,13 +31,18 @@ const App = () => {
             </NavBar>
           </Route>
           <Route exact path={"/orders"}>
-            <NavBar title="Order">
+            <NavBar title="Orders">
               <OrderList />
             </NavBar>
           </Route>
           <Route exact path={"/settings"}>
             <NavBar title="Settings">
               <h1>Settings</h1> {/* Just a placeholder until the actual component is ready */}
+            </NavBar>
+          </Route>
+          <Route exact path={"/chart"}>
+            <NavBar title="Chart">
+              <PortfolioChart />
             </NavBar>
           </Route>
         </Switch>
