@@ -1,23 +1,31 @@
 import axios from 'axios'
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState, useEffect, } from 'react'
 import { Line } from 'react-chartjs-2'
-import { Context } from "../store";
-import { loginUser } from '../store/actions';
-import { LoginContext } from './LoginForm';
+
 
 function Chart() {
     const [orderDate, setOrderDate] = useState([])
     const [TotalBalanceHistory, setTotalBalancehistory] = useState([])
     const [positionValues, setPositionValues] = useState([])
     const [totalBalance, setTotalBalance] = useState('')
-    const [userState, setUserState] = useContext(Context)
+
 
     //fetch user data
     const userData = () =>{
-        const userEmail = "gasparl@tlu.ee"
+        setTotalBalancehistory([])
+
+        //get the logged in user from local storage then get user ID
+        const getAuthUser = () =>{
+            const userId = localStorage.getItem('user')
+            const foo = JSON.parse(userId)
+            console.log(foo)
+            const id = foo.auth.user
+            console.log(id)
+            return id
+        }
 
         try{
-            axios.get(`http://localhost:8081/api/auth/user/${userEmail}`)
+            axios.get(`http://localhost:8081/api/auth/user/${getAuthUser()}`)
             .then(res =>{
                 const result = res.data
                 const orders = result.orders
@@ -36,17 +44,13 @@ function Chart() {
                     //get the dates of orders for the chart label section
                     setOrderDate(prev => [...prev, date])
 
-                    //set each orders total position value
+                    //set each orders total position value, needed for future comparison between real time data
                     setPositionValues(prev => [...prev, totalValue])
+
                     balanceSum += totalValue
                     setTotalBalancehistory(prev => [...prev, balanceSum])
                     setTotalBalance(balanceSum)
                 }
-
-                //console.log("Pos values: " + positionValues)
-                //console.log("Total money: " + TotalBalanceHistory)
-
-
             }).catch(e =>{
                 console.log(e)
             })
@@ -54,18 +58,11 @@ function Chart() {
             console.log(e)
         }
     }
+
     useEffect(() => {
-       /* const data = localStorage.getItem("logged-in-user")
-        if(data){
-            setUserState(data)
-        }*/
         userData()
     }, [])
 
-    //get user state
-    /*useEffect(() => {
-        localStorage.setItem("logged-in-user", JSON.stringify(userState))
-    })*/
 
     //chart variables
     const labels = orderDate

@@ -1,7 +1,7 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import './LoginForm.css';
 import {Redirect, Link } from 'react-router-dom';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, } from 'react';
 import { Context } from "../store"
 import { loginUser } from '../store/actions';
 
@@ -35,7 +35,6 @@ function LoginForm() {
                 console.log("User sign-in successful!")
                 dispatch(loginUser(response))
                 console.log(state)
-                localStorage.push(state)
             }else{
                 console.log("Something went wrong")
             }
