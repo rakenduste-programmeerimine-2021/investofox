@@ -6,6 +6,7 @@ import FetchStockApi from "./pages/Api";
 import AddOrder from "./pages/Order";
 import OrderList from "./pages/OrderList";
 import PortfolioChart from "./pages/PortfolioChart";
+import Store from "./store";
 
 const authPages = () => (
   <div>
@@ -17,36 +18,38 @@ const authPages = () => (
 const App = () => {
   return (
     <div>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path={["/", "/login", "/register"]} component={authPages}/>
-          <Route exact path={"/stock-api"}>
-            <NavBar title="Stock API">
-              <FetchStockApi />
-            </NavBar>
-          </Route>
-          <Route exact path={"/add-order"}>
-            <NavBar title="Add order">
-              <AddOrder />
-            </NavBar>
-          </Route>
-          <Route exact path={"/orders"}>
-            <NavBar title="Orders">
-              <OrderList />
-            </NavBar>
-          </Route>
-          <Route exact path={"/settings"}>
-            <NavBar title="Settings">
-              <h1>Settings</h1> {/* Just a placeholder until the actual component is ready */}
-            </NavBar>
-          </Route>
-          <Route exact path={"/chart"}>
-            <NavBar title="Chart">
-              <PortfolioChart />
-            </NavBar>
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      <Store>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path={["/", "/login", "/register"]} component={authPages}/>
+            <Route exact path={"/stock-api"}>
+              <NavBar title="Stock API">
+                <FetchStockApi />
+              </NavBar>
+            </Route>
+            <Route exact path={"/add-order"}>
+              <NavBar title="Add order">
+                <AddOrder />
+              </NavBar>
+            </Route>
+            <Route exact path={"/orders"}>
+              <NavBar title="Orders">
+                <OrderList />
+              </NavBar>
+            </Route>
+            <Route exact path={"/settings"}>
+              <NavBar title="Settings">
+                <h1>Settings</h1> {/* Just a placeholder until the actual component is ready */}
+              </NavBar>
+            </Route>
+            <Route exact path={"/chart"}>
+              <NavBar title="Chart">
+                <PortfolioChart />
+              </NavBar>
+            </Route>
+          </Switch>
+        </BrowserRouter>
+        </Store>
     </div>
   );
 };

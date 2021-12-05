@@ -1,7 +1,8 @@
 /* index defines the initial states of an application and combines reducers with the given states */
 import { userReducer } from "./reducers"
 import combineReducers from "react-combine-reducers"
-import { createContext, useReducer } from "react"
+import { createContext, useReducer, useEffect } from "react"
+
 
 //initial state of user and its token
 const initialAuth = {
@@ -17,9 +18,19 @@ const [combinedReducers, initialState] = combineReducers({
 export const Context = createContext(initialState)
 
 function Store({ children }){
-    const [state, dispatch] = useReducer(combinedReducers, initialState)
+    const [state, dispatch] = useReducer(combinedReducers, initialState, () => {
+        const localData = localStorage.getItem('user')
+        return localData ? JSON.parse(localData) : initialState
+    })
 
-    return (<Context.Provider value={[ state, dispatch]}>
+    useEffect(() => {
+        localStorage.setItem('user', JSON.stringify(state))
+    }, [state])
+
+
+
+    return (
+    <Context.Provider value={[ state, dispatch]}>
         { children }
     </Context.Provider>)
 }

@@ -22,9 +22,10 @@ export default function OrderList() {
       axios.get(`http://localhost:8081/api/auth/user/${userEmail}`)
       .then(response => {
           if(response){
-              console.log("Good fetch")
               setOrders(response.data)
               console.log(response.data)
+          }else if(!response.data[orders] < 1){
+            console.log("No orders to display")
           }
       }).catch(e =>{
           console.log(e)

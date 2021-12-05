@@ -1,26 +1,28 @@
 import axios from 'axios'
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { Line } from 'react-chartjs-2'
+import { Context } from "../store";
+import { loginUser } from '../store/actions';
+import { LoginContext } from './LoginForm';
 
 function Chart() {
     const [orderDate, setOrderDate] = useState([])
     const [TotalBalanceHistory, setTotalBalancehistory] = useState([])
     const [positionValues, setPositionValues] = useState([])
     const [totalBalance, setTotalBalance] = useState('')
+    const [userState, setUserState] = useContext(Context)
 
     //fetch user data
     const userData = () =>{
         const userEmail = "gasparl@tlu.ee"
-        
 
         try{
             axios.get(`http://localhost:8081/api/auth/user/${userEmail}`)
             .then(res =>{
                 const result = res.data
                 const orders = result.orders
-                if(res){
-                    console.log("Great!")
-                }
+                //console.log(orders)
+
                 var balanceSum = 0;
                 //iterate through response and get total portfolio value
                 for( var i in orders){
@@ -41,8 +43,8 @@ function Chart() {
                     setTotalBalance(balanceSum)
                 }
 
-                console.log("Pos values: " + positionValues)
-                console.log("Total money: " + TotalBalanceHistory)
+                //console.log("Pos values: " + positionValues)
+                //console.log("Total money: " + TotalBalanceHistory)
 
 
             }).catch(e =>{
@@ -52,11 +54,18 @@ function Chart() {
             console.log(e)
         }
     }
-
-    //render stuff
     useEffect(() => {
+       /* const data = localStorage.getItem("logged-in-user")
+        if(data){
+            setUserState(data)
+        }*/
         userData()
     }, [])
+
+    //get user state
+    /*useEffect(() => {
+        localStorage.setItem("logged-in-user", JSON.stringify(userState))
+    })*/
 
     //chart variables
     const labels = orderDate
@@ -66,10 +75,11 @@ function Chart() {
     const data = {
         labels: labels,
         datasets: [{
-            label: 'Portoflio performance',
+            label: 'Portfolio performance',
             data: values,
             borderColor: "green",
             borderWidth: 2,
+            backgroundColor: ["rgba(0, 255, 0, .1)"]
         }],
     }
 
@@ -90,7 +100,7 @@ function Chart() {
         },
         legend: {
             labels: {
-                defaultFontSize: 50,
+                fontSize: 20,
             
             }
         }
@@ -103,7 +113,6 @@ function Chart() {
             <Line data={data}
                 width={1500}
                 height={400}
-                margin={20}
                 options={options}
             />
             <div className="chart-chart">
