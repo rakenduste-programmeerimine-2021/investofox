@@ -16,10 +16,17 @@ export default function OrderList() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  const userEmail = "gasparl@tlu.ee"
+  const getAuthUser = () =>{
+    const userId = localStorage.getItem('user')
+    const foo = JSON.parse(userId)
+    console.log(foo)
+    const id = foo.auth.user
+    console.log(id)
+    return id
+}
   
   const getOrders = async() =>{
-      axios.get(`http://localhost:8081/api/auth/user/${userEmail}`)
+      axios.get(`http://localhost:8081/api/auth/user/${getAuthUser()}`)
       .then(response => {
           if(response){
               setOrders(response.data)
@@ -63,7 +70,7 @@ export default function OrderList() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((row) => (
+              {data ? (data.map((row) => (
                 <TableRow
                   key={row.ticker}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -79,7 +86,9 @@ export default function OrderList() {
                   <TableCell align="right">{row.date}</TableCell>
                   <TableCell align="right">{row.comments}</TableCell>
                 </TableRow>
-              ))}
+              ))) : (
+                <span>Something went wrong with retrieving data</span>
+              )}
             </TableBody>
           </Table>
         </TableContainer>

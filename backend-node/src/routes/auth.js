@@ -48,7 +48,7 @@ router.post("/signup", [
 ], validationMiddleware, authController.signup)
 
 router.get("/users", validationMiddleware, authController.getUsers)
-router.get("/user/:email", validationMiddleware, authController.getOneUser)
+router.get("/user/:id", validationMiddleware, authController.getOneUser)
 router.delete("/delete/:id", validationMiddleware, authController.deleteUser)
 
 //order actions
