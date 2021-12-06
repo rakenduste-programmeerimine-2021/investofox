@@ -1,6 +1,8 @@
 import React from 'react';
 import PortfolioForm from '../components/PortfolioForm';
 import './Portfolio.css';
+import { Link } from 'react-router-dom';
+import logo from '../InvestoFoxLogo.svg';
 
 export function Portfolio() {
 
