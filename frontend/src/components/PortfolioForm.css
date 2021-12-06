@@ -1,0 +1,56 @@
+.portfolioForm-page {
+    height: 500px;
+    width: 83.2vw;
+    height: 88vh;
+    padding: 15px 30px;
+    font-family: Antic;
+}
+
+.portfolioForm-contentContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.portfolioForm-content {
+    height: 100%;
+    font-size: 18px;
+}
+
+.portfolioForm-inputLabel {
+    margin-right: 15px;
+}
+
+.portfolioForm-input {
+    width: 300px;
+    height: 26px;
+    font-size: 15px;
+    font-family: Antic;
+}
+
+.portfolioForm-fetchButton {
+    margin-left: 15px;
+    font-family: Antic;
+    font-size: 18px;
+    color: #FFFFFF;
+    background-color: #D35E0D;
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    height: 34px;
+    cursor: pointer;
+}
+
+.portfolioForm-fetched {
+    margin: auto;
+    margin-top: 50px;
+    padding: 10px;
+    width: 300px;
+    border-radius: 15px;
+    background-color: #DBDBDB;
+}
+
+.portfolioForm-fetchedDate, .portfolioForm-fetchedPrice {
+    font-weight: bold;
+}

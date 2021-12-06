@@ -1,12 +1,12 @@
 import React from 'react';
 import PortfolioForm from '../components/PortfolioForm';
-import './Portfolio.css';
+import './Api.css';
 
 export function Portfolio() {
 
     return (
-        <div className="portfolio-body">
-            <div className="portfolio-portfolioForm">
+        <div className="api-body">
+            <div>
                 <PortfolioForm />
             </div>
         </div>
@@ -14,3 +14,6 @@ export function Portfolio() {
 }
 
 export default Portfolio
+
+//1st div -> className="api-body"
+//2nd div -> className="api-form"
