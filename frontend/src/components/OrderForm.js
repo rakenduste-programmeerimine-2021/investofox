@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import './LoginForm.css';
+import './OrderForm.css';
 import axios from 'axios'
 
 
@@ -44,65 +44,69 @@ export default function OrderForm() {
 
 
     return (
-        <div className="login-container">
-            <form onSubmit={handleSubmit} className="login-content">
-            <div>
-                <div className="login-row">
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="User email"
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        autoFocus
-                    />
+        <div className="orderForm-page">
+            <h1 className="orderForm-title">Add order</h1>
+            <div className="orderForm-contentContainer">
+                <form onSubmit={handleSubmit} className="orderForm-content">
+                <div>
+                    <div className="orderForm-row">
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="User email"
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            autoFocus
+                        />
+                    </div>
+                    <div className="orderForm-row">
+                        <label>Ticker</label>
+                        <input
+                            type="text"
+                            name="ticker"
+                            placeholder="Ticker symbol"
+                            onChange={(e) => setTicker(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="orderForm-row">
+                        <label>Amount</label>
+                        <input
+                            type="number"
+                            name="amount"
+                            onChange={(e) => setAmount(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="orderForm-row">
+                        <label>Price</label>
+                        <input
+                            type="float"
+                            name="price"
+                            onChange={(e) => setPrice(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="orderForm-row">
+                        <label>Date</label>
+                        <input
+                            className="dateInput"
+                            type="date"
+                            onChange={(e) => setDate(e.target.value)}
+                        />
+                    </div>
+                    <div className="orderForm-row">
+                        <label>Comments</label>
+                        <input
+                            type="text"
+                            onChange={(e) => setComments(e.target.value)}
+                        />
+                    </div>
+                    <button className="orderForm-addOrderButton">Add order</button>
                 </div>
-                <div className="login-row">
-                    <label>Ticker</label>
-                    <input
-                        type="text"
-                        name="ticker"
-                        placeholder="Ticker symbol"
-                        onChange={(e) => setTicker(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="login-row">
-                    <label>Amount</label>
-                    <input
-                        type="number"
-                        name="amount"
-                        onChange={(e) => setAmount(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="login-row">
-                    <label>Price</label>
-                    <input
-                        type="float"
-                        name="price"
-                        onChange={(e) => setPrice(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="login-row">
-                    <label>Date</label>
-                    <input
-                        type="date"
-                        onChange={(e) => setDate(e.target.value)}
-                    />
-                </div>
-                <div className="login-row">
-                    <label>Comments</label>
-                    <input
-                        type="text"
-                        onChange={(e) => setComments(e.target.value)}
-                    />
-                </div>
-                <button>Add order</button>
+                </form>
             </div>
-            </form>
         </div>
     )
 }
