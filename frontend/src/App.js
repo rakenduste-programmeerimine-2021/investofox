@@ -3,12 +3,13 @@ import Register from "./pages/Register";
 import NavBar from './components/NavBar';
 import Login from "./pages/Login";
 import Portfolio from "./pages/Portfolio";
-import Order from "./pages/Order";
+import ForgotPassword from "./pages/ForgotPassword";
 
 const authPages = () => (
   <div>
     <Route exact path={["/", "/login"]} component={Login} />
     <Route exact path="/register" component={Register} />
+    <Route exact path="/forgot-password" component={ForgotPassword} />
   </div>
 )
 
@@ -17,7 +18,7 @@ const App = () => {
     <div>
       <BrowserRouter>
         <Switch>
-          <Route exact path={["/", "/login", "/register"]} component={authPages}/>
+          <Route exact path={["/", "/login", "/register", "/forgot-password"]} component={authPages}/>
           <Route exact path={"/portfolio"}>
             <NavBar title="My portfolio">
               <Portfolio />
