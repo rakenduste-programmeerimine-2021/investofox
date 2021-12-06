@@ -8,6 +8,11 @@ export function Portfolio() {
 
     return (
         <div className="portfolio-body">
+            <div className="portfolio-logoContainer">
+                <Link to="/portfolio">
+                    <img src={logo} alt="InvestoFox logo" className="portfolio-logo" />
+                </Link>
+            </div>
             <div className="portfolio-portfolioForm">
                 <PortfolioForm />
             </div>

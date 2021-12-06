@@ -31,9 +31,7 @@ exports.login = async (req, res) => {
       email,
     };
 
-    const token = jwt.sign(userTemplate, process.env.JWT_SECRET, {
-      expiresIn: 900
-    });
+    const token = jwt.sign(userTemplate, process.env.JWT_SECRET, {expiresIn: '2 hours'});
 
     if (!token) throw Error("Something critical happened: Code-101");
     //code-101 means that token was not found
@@ -102,7 +100,9 @@ exports.getUsers = async (req, res) => {
   } = req.params;
 
   try {
-    const user = await User.find();
+    const user = await User.find({
+      id
+    });
 
     if (!user) {
       console.log('Sorry, no users to display')
@@ -123,12 +123,12 @@ exports.getUsers = async (req, res) => {
 
 exports.getOneUser = async (req, res) => {
   const {
-    email
+    id
   } = req.params;
 
   try {
     const user = await User.findOne({
-      email
+      id
     });
 
     if (!user) {
@@ -169,9 +169,7 @@ exports.deleteUser = async (req, res) => {
 
 exports.addOrder = async (req, res) => {
 
-  const {
-    email
-  } = req.params
+  const {email} = req.params
 
   const {
     ticker,
@@ -182,7 +180,7 @@ exports.addOrder = async (req, res) => {
 
   } = req.body;
 
-  try {
+  try{
     const user = await User.findOneAndUpdate({
       email: email
     }, {
@@ -206,43 +204,19 @@ exports.addOrder = async (req, res) => {
       message: `Order: ${orders} \n has been added to ${user}`
     });
 
-  } catch (error) {
+  }catch(error) {
     res.status(400).json({
       error: error.message
     })
   }
 }
 
-//might not even need this tbh
-exports.getOrders = async (req, res) => {
-
-  try {
-
-    const userOrders = await User.find({"orders" : req.params.email})
-
-    if(!userOrders)
-    return res.status(200).send({ message: "User has no orders"})
-
-    res.status(200).send(userOrders)
-
-  } catch (error) {
-    res.status(400).json({
-      error: error.message
-    })
-  }
-}; // end of getOrders
-
-
-//doesnt work probably, just copy pasted
 exports.deleteOrder = async (req, res) => {
 
-  const {
-    email,
-    id
-  } = req.params
+  const {email, id} = req.params
 
 
-  try {
+  try{
     const user = await User.findByIdAndDelete({
       _id: id
     }, {
@@ -266,7 +240,7 @@ exports.deleteOrder = async (req, res) => {
       message: `Order: ${orders} \n has been added to ${user}`
     });
 
-  } catch (error) {
+  }catch(error) {
     res.status(400).json({
       error: error.message
     })
