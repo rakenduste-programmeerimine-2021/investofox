@@ -1,15 +1,17 @@
 import React from 'react';
 import './LoginForm.css';
 import {Redirect, Link } from 'react-router-dom';
-import { useState, useContext } from 'react';
-// import { Context } from "../store"
+import { useState, useContext, } from 'react';
+import { Context } from "../store"
+import { loginUser } from '../store/actions';
+
 
 function LoginForm() {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const [redirect, setRedirect] = useState(false) 
     const [visible, setVisible] = useState("password")
-    //const [state, dispatch] = useContext(Context)
+    const [state, dispatch] = useContext(Context)
 
     const handleSubmit = async(value) =>{
         value.preventDefault()
@@ -25,25 +27,33 @@ function LoginForm() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(user)
-        }).then((res) => {
-            if(res.ok){
+        }).then(response => response.json())
+
+        .then(response => {
+            if(response){
                 setRedirect(true)
                 console.log("User sign-in successful!")
+                dispatch(loginUser(response))
+                console.log(state)
             }else{
                 console.log("Something went wrong")
             }
-
         
-        }).catch((e) => {
-            console.error(e)
         })
 
 
-
+        
+        .catch((e) => {
+            console.error(e)
+        })
     }
 
+    /*useEffect(() => {
+        localStorage.setItem("logged-in-user", JSON.stringify(state))
+    })*/
+
     if(redirect){
-        return <Redirect to="/portfolio" />
+        return <Redirect to="/chart" />
     }
 
 
@@ -80,7 +90,7 @@ function LoginForm() {
                         className="login-passwordToggler"
                         onClick={() => {visible === "text" ? setVisible("password") : setVisible("text")}}
                     >
-                        Show
+                        {visible === "text" ? "Hide" : "Show"}
                     </button>
                 </div>
                 <div className="login-footerDiv">

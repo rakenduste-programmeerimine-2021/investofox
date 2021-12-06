@@ -10,18 +10,21 @@ const NavBar = ({title, children}) => {
         <div className="page">
             <div className="leftBar">
                 <div className="topHalf">
-                    <Link to="./portfolio">
+                    <Link to="./chart">
                         <img src={logo} alt="InvestoFox logo" className="logo" />
                     </Link>
                     <div className="navBarButtonsDiv">
-                        <Link to="./portfolio">
-                            <button className="navBarButton">Portfolio</button>
+                        <Link to="./stock-api">
+                            <button className="navBarButton">Stock fetch</button>
                         </Link>
                         <Link to="./add-order">
                             <button className="navBarButton">Add order</button>
                         </Link>
                         <Link to="./order">
                             <button className="navBarButton">Order</button>
+                        </Link>
+                        <Link to="./chart">
+                            <button className="navBarButton">Chart</button>
                         </Link>
                     </div>
                 </div>
