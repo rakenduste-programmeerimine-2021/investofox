@@ -6,9 +6,7 @@ export function Portfolio() {
 
     return (
         <div className="api-body">
-            <div>
-                <PortfolioForm />
-            </div>
+          <PortfolioForm />
         </div>
     )
 }

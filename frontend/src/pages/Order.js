@@ -4,12 +4,12 @@ import logo from '../InvestoFoxLogo.svg';
 import { Link } from 'react-router-dom';
 import './Login.css';
 
-export function AddOrder() {
+export function Order() {
 
     return (
         <div className="login-body">
             <div className="login-logoContainer">
-                <Link to="/orders">
+                <Link to="/order">
                     <img src={logo} alt="InvestoFox logo" className="logo" />
                 </Link>
             </div>
@@ -20,4 +20,4 @@ export function AddOrder() {
     )
 }
 
-export default AddOrder
+export default Order

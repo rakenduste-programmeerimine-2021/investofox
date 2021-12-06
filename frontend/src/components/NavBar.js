@@ -21,7 +21,7 @@ const NavBar = ({title, children}) => {
                             <button className="navBarButton">Add order</button>
                         </Link>
                         <Link to="./orders">
-                            <button className="navBarButton">Orders</button>
+                            <button className="navBarButton">Order</button>
                         </Link>
                         <Link to="./chart">
                             <button className="navBarButton">Chart</button>

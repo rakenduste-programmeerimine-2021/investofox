@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Register from "./pages/Register";
 import NavBar from './components/NavBar';
 import Login from "./pages/Login";
+import ForgotPassword from "./pages/ForgotPassword";
 import FetchStockApi from "./pages/Api";
 import AddOrder from "./pages/Order";
 import OrderList from "./pages/OrderList";
@@ -12,6 +13,7 @@ const authPages = () => (
   <div>
     <Route exact path={["/", "/login"]} component={Login} />
     <Route exact path="/register" component={Register} />
+    <Route exact path="/forgot-password" component={ForgotPassword} />
   </div>
 )
 
@@ -21,7 +23,7 @@ const App = () => {
       <Store>
         <BrowserRouter>
           <Switch>
-            <Route exact path={["/", "/login", "/register"]} component={authPages}/>
+            <Route exact path={["/", "/login", "/register", "/forgot-password"]} component={authPages}/>
             <Route exact path={"/stock-api"}>
               <NavBar title="Stock API">
                 <FetchStockApi />
