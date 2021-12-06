@@ -1,23 +1,17 @@
 import React from 'react';
 import PortfolioForm from '../components/PortfolioForm';
-import './Portfolio.css';
-import { Link } from 'react-router-dom';
-import logo from '../InvestoFoxLogo.svg';
+import './Api.css';
 
 export function Portfolio() {
 
     return (
-        <div className="portfolio-body">
-            <div className="portfolio-logoContainer">
-                <Link to="/portfolio">
-                    <img src={logo} alt="InvestoFox logo" className="portfolio-logo" />
-                </Link>
-            </div>
-            <div className="portfolio-portfolioForm">
-                <PortfolioForm />
-            </div>
+        <div className="api-body">
+          <PortfolioForm />
         </div>
     )
 }
 
 export default Portfolio
+
+//1st div -> className="api-body"
+//2nd div -> className="api-form"
