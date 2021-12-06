@@ -1,5 +1,6 @@
-import axios from "axios"
-import React, { useEffect, useState } from 'react'
+import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import './PortfolioForm.css';
 
 export function PortfolioForm() {
 
@@ -53,30 +54,41 @@ export function PortfolioForm() {
 
 
         return (
-            <div className="login-container">
+            <div className="portfolioForm-page">
                 <h1>Stock portfolio</h1>
-                <form onSubmit={handleSubmit} className="login-content">
-                    <label>Symbol</label>
-                            <input 
-                                type="text" 
-                                name="stockSymbol"
-                                placeholder="TSLA...." 
-                                onChange={(e) => setSymbol(e.target.value)}
-                                required
-                            />
-    
-                    <button className="login-loginButton">Fetch</button>
-                </form>
-                <ul className="login-container">
-                    <li>
-                            <div>
-                                <h4>Symbol: {stockChartZValues}</h4>
-                                <p>Date: {stockChartXValues}</p>
-                                <p>Price: {stockChartYValues}</p>
-                            </div>
-                        
-                    </li>
-                </ul>
+                <div className="portfolioForm-contentContainer">
+                    <div className="portfolioForm-content">
+                        <form onSubmit={handleSubmit}>
+                            <label className="portfolioForm-inputLabel">Symbol</label>
+                                <input 
+                                    className="portfolioForm-input"
+                                    type="text" 
+                                    name="stockSymbol"
+                                    placeholder="TSLA" 
+                                    onChange={(e) => setSymbol(e.target.value)}
+                                    required
+                                />
+                            <button className="portfolioForm-fetchButton">Fetch</button>
+                        </form>
+                        <div className="portfolioForm-fetched">
+                            <h4>
+                                Symbol: {stockChartZValues}
+                            </h4>
+                            <p>
+                                Date: 
+                                <p className="portfolioForm-fetchedDate">
+                                    {stockChartXValues}
+                                </p>
+                            </p>
+                            <p>
+                                Price: 
+                                <p className="portfolioForm-fetchedPrice">
+                                    {stockChartYValues}
+                                </p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
