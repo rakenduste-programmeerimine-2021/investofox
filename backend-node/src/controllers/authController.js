@@ -236,7 +236,7 @@ exports.getOrders = async (req, res) => {
 exports.deleteOrder = async (req, res) => {
 
   const {
-    id
+    id, orderId
   } = req.params
 
 
@@ -244,7 +244,7 @@ exports.deleteOrder = async (req, res) => {
     const user = await User.findByIdAndDelete({
       _id: id
     }, {
-      $push: {
+      $: {
         orders: {
           ticker: ticker,
           amount: amount,

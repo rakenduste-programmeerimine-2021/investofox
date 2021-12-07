@@ -9,12 +9,13 @@ import Paper from '@mui/material/Paper';
 import {useState, useEffect} from 'react'
 import axios from "axios"
 import { Checkbox } from '@mui/material';
-
+import StockFetcher from '../components/StockFetcher';
 
 export default function OrderList() {
   
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [stocks, setStocks] = useState([]);
   
   const getAuthUser = () =>{
     const userId = localStorage.getItem('user')
@@ -35,18 +36,30 @@ export default function OrderList() {
             console.log("No orders to display")
           }
       }).catch(e =>{
-          console.log(e)
+          console.log("Something wen wrong with getting user data" + e)
       }).finally(() => {
           setLoading(false)
       })
+
+        //set stock list to a state
+        const stock = orders.orders
+        for(var key in stock){
+          const foo = stock[key]
+          setStocks(prev =>[...prev, foo])
+        }
   }
+
   
   useEffect(() => {
       getOrders()
   }, [])
 
-
   const data = orders.orders
+  console.log(data)
+  StockFetcher(data, setOrders)
+  console.log(orders)
+
+
 
   //if data is being fetched
   if(loading) {
@@ -66,6 +79,7 @@ export default function OrderList() {
                 <TableCell align="right">Amount</TableCell>
                 <TableCell align="right">Price(€)</TableCell>
                 <TableCell align="right">Date</TableCell>
+                <TableCell align="right">Profit/Loss</TableCell>
                 <TableCell align="right">Comments</TableCell>
               </TableRow>
             </TableHead>
@@ -84,6 +98,7 @@ export default function OrderList() {
                   <TableCell align="right">{row.price}</TableCell>
                   <TableCell align="right">{row.amount}</TableCell>
                   <TableCell align="right">{row.date}</TableCell>
+                  <TableCell align="right">{row.currentPrice}</TableCell>
                   <TableCell align="right">{row.comments}</TableCell>
                 </TableRow>
               ))) : (

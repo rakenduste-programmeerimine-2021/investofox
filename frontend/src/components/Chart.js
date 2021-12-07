@@ -29,7 +29,7 @@ function Chart() {
     const userData = (userAuth) =>{
 
         setTotalBalancehistory([])
-        console.log(totalBalanceHistory)
+        console.log(stock)
 
         try{
             axios.get(`http://localhost:8081/api/auth/user/${userAuth}`)
@@ -53,7 +53,6 @@ function Chart() {
                         date
                     }
                     setStock(prev =>[...prev, stockInfo])
-                    console.log("stock " + JSON.stringify(stock))
 
                     // calculate the value of a position
                     const totalValue = price * amount
@@ -68,10 +67,6 @@ function Chart() {
                     setTotalBalancehistory(prev => [...prev, balanceSum])
                     setTotalBalance(balanceSum)
                 }
-                console.log("Total balance: " + totalBalance)
-                console.log("Stocks: " + stock)
-                console.log("Order dates: "  + orderDate)
-                console.log("Total balance history: " + totalBalanceHistory)
             }).catch(e =>{
                 console.log(e)
             })
@@ -80,11 +75,13 @@ function Chart() {
         }
     }
 
-    const ApiFetch = async () => {
+    const ApiFetch = async (stocks) => {
 
         //TO-DO
         //loop through stock list
-        console.log(stock)
+        for(var j in stocks){
+
+        }
     }
 
 
@@ -92,6 +89,13 @@ function Chart() {
     useEffect(() => {
         userData(getAuthUser())
     }, [])
+
+    /*console.log("Total balance: " + JSON.stringify(totalBalance))
+    console.log("Stocks: " + stock)
+    console.log("Order dates: "  + orderDate)
+    console.log("Total balance history: " + totalBalanceHistory)*/
+
+
     //chart variables
     const labels = orderDate
     const values = totalBalanceHistory
@@ -133,6 +137,8 @@ function Chart() {
 
     }
 
+    var time = new Date().toISOString().slice(0, 10)
+
     return(
         <div>
             <Line data={data}
@@ -142,6 +148,7 @@ function Chart() {
             />
             <div className="chart-chart">
                 <h4>Total: {totalBalance}€</h4>
+                <h4>Time: {time}</h4>
             </div>
         </div>
 
