@@ -52,7 +52,7 @@ router.get("/user/:id", validationMiddleware, authController.getOneUser)
 router.delete("/delete/:id", validationMiddleware, authController.deleteUser)
 
 //order actions
-router.put("/add-order/:email", validationMiddleware, authController.addOrder)
-router.get("/orders", authController.getOrders)
+router.put("/add-order/:id", validationMiddleware, authController.addOrder)
+//router.get("/orders", authController.getOrders)
 
 module.exports = router

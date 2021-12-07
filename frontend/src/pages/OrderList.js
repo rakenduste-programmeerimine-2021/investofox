@@ -18,9 +18,9 @@ export default function OrderList() {
   
   const getAuthUser = () =>{
     const userId = localStorage.getItem('user')
-    const foo = JSON.parse(userId)
-    console.log(foo)
-    const id = foo.auth.user
+    const parsedID = JSON.parse(userId)
+    console.log(parsedID)
+    const id = parsedID.auth.user
     console.log(id)
     return id
 }
@@ -87,12 +87,12 @@ export default function OrderList() {
                   <TableCell align="right">{row.comments}</TableCell>
                 </TableRow>
               ))) : (
-                <span>Something went wrong with retrieving data</span>
+                <span style={{color: "red"}}>Couldn't retrieve data</span>
               )}
             </TableBody>
           </Table>
         </TableContainer>
       </div>
     </div>
-  );
+  )
 }
