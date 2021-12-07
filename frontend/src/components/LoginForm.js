@@ -48,16 +48,10 @@ function LoginForm() {
         })
     }
 
-    /*useEffect(() => {
-        localStorage.setItem("logged-in-user", JSON.stringify(state))
-    })*/
-
     if(redirect){
         return <Redirect to="/chart" />
     }
-
-
-
+    
     return(
         <div className="login-container">
             <form className="login-content" onSubmit={handleSubmit}>
