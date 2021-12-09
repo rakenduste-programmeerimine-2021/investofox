@@ -11,9 +11,12 @@ function LoginForm() {
     const [email, setEmail] = useState('')
     const [redirect, setRedirect] = useState(false) 
     const [visible, setVisible] = useState("password")
+    const [errorMsg, setErrorMsg] = useState("")
+    const [validate, setValidate] = useState(false)
     const [state, dispatch] = useContext(Context)
 
     const handleSubmit = async(value) =>{
+        setRedirect(false)
         value.preventDefault()
 
         const user = {
@@ -28,15 +31,16 @@ function LoginForm() {
             },
             body: JSON.stringify(user)
         }).then(response => response.json())
-
         .then(response => {
-            if(response){
+            if(response.ok){
                 setRedirect(true)
+                setValidate(true)
                 console.log("User sign-in successful!")
                 dispatch(loginUser(response))
                 console.log(state)
             }else{
-                console.log("Something went wrong")
+                setErrorMsg("An user with this email does not exist!")
+                console.log("An user with this email does not exist.")
             }
         
         })
@@ -57,6 +61,7 @@ function LoginForm() {
             <form className="login-content" onSubmit={handleSubmit}>
             <div className="login-header">
                 <p className="login-title">Login</p>
+                {<span style={{color: "red"}}>{errorMsg}</span>}
             </div>
                 <div className="login-row">
                     <label>Email</label>
