@@ -1,5 +1,6 @@
 import React from 'react';
 import './LoginForm.css';
+import axios from "axios"
 import {Redirect, Link } from 'react-router-dom';
 import { useState, useContext, } from 'react';
 import { Context } from "../store"
@@ -11,45 +12,41 @@ function LoginForm() {
     const [email, setEmail] = useState('')
     const [redirect, setRedirect] = useState(false) 
     const [visible, setVisible] = useState("password")
-    const [errorMsg, setErrorMsg] = useState("")
-    const [validate, setValidate] = useState(false)
+    const [errorMsg, setErrorMsg] = useState('')
     const [state, dispatch] = useContext(Context)
 
     const handleSubmit = async(value) =>{
-        setRedirect(false)
         value.preventDefault()
+        //set states to their initial state
+        setRedirect(false)
+        setErrorMsg('')
 
         const user = {
             email: email,
             password: password,
         }
 
-        await fetch('http://localhost:8081/api/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(user)
-        }).then(response => response.json())
-        .then(response => {
-            if(response.ok){
-                setRedirect(true)
-                setValidate(true)
-                console.log("User sign-in successful!")
-                dispatch(loginUser(response))
-                console.log(state)
-            }else{
-                setErrorMsg("An user with this email does not exist!")
-                console.log("An user with this email does not exist.")
-            }
-        
-        })
+        //axios fetch
+        try{
+            axios.post('http://localhost:8081/api/auth/login', user)
+            .then(res => {
+                console.log(res.data)
+                if(res){
+                    setRedirect(true)
+                    console.log("User sign-in successful!")
+                    dispatch(loginUser(res.data))
+                }else{
+                    setErrorMsg("An user with this email does not exist!")
+                }
+            }).catch(error => {
+                console.log(error)
+                setErrorMsg("An user with this email does not exist")
+            })
 
-
-        
-        .catch((e) => {
-            console.error(e)
-        })
+        } catch(error){
+            console.error(error)
+            setErrorMsg("An user with this email does not exist")
+        }
     }
 
     if(redirect){
