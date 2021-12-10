@@ -29,7 +29,6 @@ function Chart() {
     const userData = (userAuth) =>{
 
         setTotalBalancehistory([])
-        console.log(stock)
 
         try{
             axios.get(`http://localhost:8081/api/auth/user/${userAuth}`)

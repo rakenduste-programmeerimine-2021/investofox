@@ -37,7 +37,7 @@ function RegisterForm() {
                     console.log("User registered successfully!")
                     setRedirect(true)
                 }else{
-                    //setErrorMsg("An user with this email already exists")
+                    /////setErrorMsg("An user with this email already exists")
                     console.log(res.data)
                 }
 
