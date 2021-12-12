@@ -1,6 +1,6 @@
 import axios from "axios"
 import React, { useState } from 'react'
-import { STOCK_API, TOKEN } from "./Utils/StockApi"
+import { STOCK_API_GLOBAL, TOKEN } from "./Utils/StockApi"
 import './PortfolioForm.css';
 
 
@@ -10,6 +10,7 @@ export function PortfolioForm() {
     const [stockChartXValues, setStockChartXValues] = useState([])
     const [stockChartYValues, setStockChartYValues] = useState([])
     const [stockChartZValues, setStockChartZValues] = useState([])
+    const [change, setChange] = useState([])
     const [loading, setLoading]= useState(true)
 
     const handleSubmit = async(value) =>{
@@ -17,25 +18,28 @@ export function PortfolioForm() {
         const tickers = symbol
 
         try{
-            axios.get(`${STOCK_API}&symbol=${tickers}&apikey=${TOKEN}`)
+            axios.get(`${STOCK_API_GLOBAL}&symbol=${tickers}&apikey=${TOKEN}`)
             .then(res =>{
                 if(res){
                     console.log(res.data)
-                    setLoading(false)
                 }
 
-                const data = res.data
-
-                for( var key in data['Time Series (Daily)']) {
-                    setStockChartXValues(key)
-                    setStockChartYValues(data[`Time Series (Daily)`]
-                    [key]['4. close'])
-                    console.log("key "+ key)
-                    setStockChartZValues(data[`Meta Data`]['2. Symbol'])
-                    console.log("Price: " + stockChartYValues)
-                    console.log("symbol: " + stockChartZValues)
-                }
-
+                const data = res.data['Global Quote']
+                const yesterday = new Date()
+                yesterday.setDate(yesterday.getDate())
+                const time = yesterday.toISOString().slice(0, 17).replace("T", " ").concat("00")
+                console.log(time)
+                const price = data['05. price']
+                const symbol = data['01. symbol']
+                const changePercent = data['10. change percent']
+                setStockChartXValues(time)
+                setStockChartYValues(price + "$")
+                setStockChartZValues(symbol)
+                setChange(changePercent + "%")
+                setLoading(false)
+            }).catch(e =>{
+                console.error(e)
+            }).finally(() =>{
                 if(loading){
                     return(
                         <div className={"login-container"}>
@@ -43,8 +47,6 @@ export function PortfolioForm() {
                         </div>
                     )
                 }
-            }).catch(e =>{
-                console.error(e)
             })
 
 
@@ -54,10 +56,9 @@ export function PortfolioForm() {
         } //end of handleSubmit
 
 
-
         return (
             <div className="portfolioForm-page">
-                <h1>Stock portfolio</h1>
+                <h1>Stock info</h1>
                 <div className="portfolioForm-contentContainer">
                     <div className="portfolioForm-content">
                         <form onSubmit={handleSubmit}>
@@ -73,20 +74,17 @@ export function PortfolioForm() {
                             <button className="portfolioForm-fetchButton">Fetch</button>
                         </form>
                         <div className="portfolioForm-fetched">
-                            <h4>
+                            <p className="portfolioForm-fetchedPrice">
                                 Symbol: {stockChartZValues}
-                            </h4>
-                            <p>
-                                Date: 
-                                <p className="portfolioForm-fetchedDate">
-                                    {stockChartXValues}
-                                </p>
                             </p>
                             <p>
-                                Price: 
-                                <p className="portfolioForm-fetchedPrice">
-                                    {stockChartYValues}
-                                </p>
+                                Date: {stockChartXValues}
+                            </p>
+                            <p >
+                                Price: {stockChartYValues}
+                            </p>
+                            <p >
+                                Change: {change}
                             </p>
                         </div>
                     </div>

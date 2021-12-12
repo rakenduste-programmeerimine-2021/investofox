@@ -44,6 +44,19 @@ export default function OrderList() {
     return profitLoss.toFixed(2)
   }
 
+  //Calculates the profit or loss for the whole portfolio
+  const profitLossTotalCalculator = (fetchArray) => {
+    let profitLossTotal = 0;
+
+    fetchArray.forEach((stock) => {
+        if (!isNaN(Number(stock.profitLoss))) {
+            profitLossTotal += Number(stock.profitLoss);
+        }
+    });
+
+    return profitLossTotal.toFixed(2);
+  }
+
   const getOrders = async() =>{
     setErrorMsg("")
     setFetchArray([])
@@ -102,6 +115,9 @@ export default function OrderList() {
         <div style={{display: "inline-block", width: "150vh"}}>
           <TableContainer component={Paper} sx={{maxWidth: 1200, padding: 6, margin: "auto", marginTop: 10, marginBottom: 10}}>
             <h1 style={{textAlign: "center"}}>Your orders, {userInfo.firstName}</h1>
+            <h4>Total Profit:{
+            profitLossTotalCalculator(fetchArray)}
+            </h4>
             <Table sx={{padding: 20, minHeight: 350,}} aria-label="simple table">
               <TableHead>
                 <TableRow sx={{maxHeight: 600}}>
