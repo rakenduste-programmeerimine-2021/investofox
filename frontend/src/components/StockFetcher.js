@@ -10,15 +10,16 @@ const stockFetcher = (stocks, setStocks, profitLossCalculator) => {
         try {
             const ticker = stock.ticker
             const response = await axios.get(`${STOCK_API}&symbol=${ticker}&apikey=${TOKEN}`)
-            const data = await response.data;
+            const returnedData = await response.data;
+            console.log(returnedData)
 
             const today = new Date()
             const yesterday = new Date(today)
             
-            yesterday.setDate(yesterday.getDate() - 1)
+            yesterday.setDate(yesterday.getDate() - 2)//3 days before today
 
-            console.log(yesterday)
-            const currentPrice = data['Time Series (Daily)'][yesterday.toISOString().slice(0, 10)]['1. open']
+
+            const currentPrice = returnedData['Time Series (Daily)'][yesterday.toISOString().slice(0, 10)]['4. close']
 
             const profitLoss = profitLossCalculator(
                 stock.price,
@@ -44,6 +45,8 @@ const stockFetcher = (stocks, setStocks, profitLossCalculator) => {
             console.log("error with stockFetcher: " + error);
         }
     });
+
+    return setStocks
 };
 
 export default stockFetcher;
