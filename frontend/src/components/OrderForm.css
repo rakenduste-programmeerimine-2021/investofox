@@ -1,0 +1,62 @@
+.orderForm-page {
+    margin: 0px;
+    height: 500px;
+    width: 83.2vw;
+    height: 88vh;
+    padding: 15px 30px;
+    font-family: Antic;
+}
+
+.orderForm-title {
+    text-align: left;
+}
+
+.orderForm-contentContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.orderForm-content {
+    height: 100%;
+    font-size: 18px;
+}
+
+.orderForm-row {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.orderForm-row label {
+    float: left;
+    text-align: left;
+    width: 120px;
+    font-size: 20px;
+}
+
+.orderForm-row input {
+    font-family: Antic;
+    font-size: 18px;
+    height: 26px;
+    width: 250px;
+}
+
+.dateInput {
+    width: 172px;
+}
+
+.orderForm-addOrderButton {
+    margin-top: 30px;
+    margin-left: 15px;
+    font-family: Antic;
+    font-size: 18px;
+    color: #FFFFFF;
+    background-color: #D35E0D;
+    border: none;
+    border-radius: 10px;
+    width: 140px;
+    height: 34px;
+    cursor: pointer;
+}
