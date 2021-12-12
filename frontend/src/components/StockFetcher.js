@@ -1,4 +1,4 @@
-import { STOCK_API, TOKEN } from './Utils/StockApi';
+import { STOCK_API_GLOBAL, TOKEN } from './Utils/StockApi';
 import axios from "axios"
 
 //code from https://motion-software.com/blog/how-create-stock-portfolio-app-reactjs-firebase
@@ -9,17 +9,16 @@ const stockFetcher = (stocks, setStocks, profitLossCalculator) => {
         console.log(stock)
         try {
             const ticker = stock.ticker
-            const response = await axios.get(`${STOCK_API}&symbol=${ticker}&apikey=${TOKEN}`)
+            const response = await axios.get(`${STOCK_API_GLOBAL}&symbol=${ticker}&apikey=${TOKEN}`)
             const returnedData = await response.data;
             console.log(returnedData)
 
-            const today = new Date()
-            const yesterday = new Date(today)
-            
-            yesterday.setDate(yesterday.getDate() - 2)//3 days before today
+            const yesterday = new Date()
+            yesterday.setDate(yesterday.getDate())
+            const time = yesterday.toISOString().slice(0, 17).replace("T", " ").concat("00")
 
 
-            const currentPrice = returnedData['Time Series (Daily)'][yesterday.toISOString().slice(0, 10)]['4. close']
+            const currentPrice = returnedData['Global Quote']['05. price']
 
             const profitLoss = profitLossCalculator(
                 stock.price,

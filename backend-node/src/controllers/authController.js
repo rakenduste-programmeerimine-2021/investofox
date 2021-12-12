@@ -193,7 +193,6 @@ exports.addOrder = async (req, res) => {
           price: price,
           date: date,
           comments: comments
-
         }
       },
     })
@@ -236,22 +235,26 @@ exports.getOrders = async (req, res) => {
 exports.deleteOrder = async (req, res) => {
 
   const {
-    id, orderId
+    id
   } = req.params
+
+  const {
+    ticker,
+    amount,
+    price,
+    date,
+    comments
+
+  } = req.body;
 
 
   try {
     const user = await User.findByIdAndDelete({
       _id: id
     }, {
-      $: {
+      $delete: {
         orders: {
-          ticker: ticker,
-          amount: amount,
-          price: price,
-          date: date,
-          comments: comments
-
+          id: orderId
         }
       },
     })

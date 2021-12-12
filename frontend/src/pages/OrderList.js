@@ -10,6 +10,7 @@ import {useState, useEffect} from 'react'
 import axios from "axios"
 import { Checkbox } from '@mui/material';
 import stockFetcher from '../components/StockFetcher';
+import "./OrderList.css"
 
 
 export default function OrderList() {
@@ -19,7 +20,6 @@ export default function OrderList() {
   const [profit, setProfit] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [fetchArray, setFetchArray] = useState([]);
-  const [refreshed, setRefreshed] = useState(false);
 
   const orders = []
 
@@ -115,9 +115,9 @@ export default function OrderList() {
         <div style={{display: "inline-block", width: "150vh"}}>
           <TableContainer component={Paper} sx={{maxWidth: 1200, padding: 6, margin: "auto", marginTop: 10, marginBottom: 10}}>
             <h1 style={{textAlign: "center"}}>Your orders, {userInfo.firstName}</h1>
-            <h4>Total Profit:{
-            profitLossTotalCalculator(fetchArray)}
-            </h4>
+            <div>            <h4>Total Profit: <p style={{color: `${profitLossTotalCalculator(fetchArray) <= 0 ? "red" : "green"}`}}>{profitLossTotalCalculator(fetchArray)}</p>
+            </h4></div>
+
             <Table sx={{padding: 20, minHeight: 350,}} aria-label="simple table">
               <TableHead>
                 <TableRow sx={{maxHeight: 600}}>
@@ -147,7 +147,9 @@ export default function OrderList() {
                     <TableCell align="right">{row.amount}</TableCell>
                     <TableCell align="right">{row.date}</TableCell>
                     <TableCell align="right">{row.currentPrice}€</TableCell>
-                    <TableCell align="right">{row.profitLoss}€</TableCell>
+                    <TableCell align="right" style={{color: `${row.profitLoss <= 0 ? "red" : "green"}`}}>
+                    {row.profitLoss}€
+                    </TableCell>
                     <TableCell align="right">{row.comments}</TableCell>
                   </TableRow>
                 ))) : (
