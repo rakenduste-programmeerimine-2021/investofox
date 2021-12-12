@@ -1,31 +1,37 @@
 import axios from 'axios'
-import React, {useState, useEffect, } from 'react'
+import React, {useState, useEffect} from 'react'
 import { Line } from 'react-chartjs-2'
 
 
 function Chart() {
     const [orderDate, setOrderDate] = useState([])
-    const [TotalBalanceHistory, setTotalBalancehistory] = useState([])
+    const [totalBalanceHistory, setTotalBalancehistory] = useState([])
     const [positionValues, setPositionValues] = useState([])
     const [totalBalance, setTotalBalance] = useState('')
+    const [stock, setStock] = useState([])
+
+    //get the logged in user from local storage then get user ID
+    const getAuthUser = () =>{
+        try{
+            const userId = localStorage.getItem('user')
+            const foo = JSON.parse(userId)
+            const id = foo.auth.user
+            //console.log(id)
+            return id
+        }catch(e){
+            console.log(e)
+            console.log("No auth")
+        }
+    }
 
 
     //fetch user data
-    const userData = () =>{
+    const userData = (userAuth) =>{
+
         setTotalBalancehistory([])
 
-        //get the logged in user from local storage then get user ID
-        const getAuthUser = () =>{
-            const userId = localStorage.getItem('user')
-            const foo = JSON.parse(userId)
-            console.log(foo)
-            const id = foo.auth.user
-            console.log(id)
-            return id
-        }
-
         try{
-            axios.get(`http://localhost:8081/api/auth/user/${getAuthUser()}`)
+            axios.get(`http://localhost:8081/api/auth/user/${userAuth}`)
             .then(res =>{
                 const result = res.data
                 const orders = result.orders
@@ -34,9 +40,18 @@ function Chart() {
                 var balanceSum = 0;
                 //iterate through response and get total portfolio value
                 for( var i in orders){
+                    const ticker = orders[i]['ticker']
                     const price = orders[i]['price']
                     const amount = orders[i]['amount']
                     const date = orders[i]['date']
+
+                    const stockInfo = {
+                        ticker,
+                        price,
+                        amount,
+                        date
+                    }
+                    setStock(prev =>[...prev, stockInfo])
 
                     // calculate the value of a position
                     const totalValue = price * amount
@@ -59,14 +74,30 @@ function Chart() {
         }
     }
 
+    const ApiFetch = async (stocks) => {
+
+        //TO-DO
+        //loop through stock list
+        for(var j in stocks){
+
+        }
+    }
+
+
+
     useEffect(() => {
-        userData()
+        userData(getAuthUser())
     }, [])
+
+    /*console.log("Total balance: " + JSON.stringify(totalBalance))
+    console.log("Stocks: " + stock)
+    console.log("Order dates: "  + orderDate)
+    console.log("Total balance history: " + totalBalanceHistory)*/
 
 
     //chart variables
     const labels = orderDate
-    const values = TotalBalanceHistory
+    const values = totalBalanceHistory
 
     //data that is seen in the chart
     const data = {
@@ -105,6 +136,8 @@ function Chart() {
 
     }
 
+    var time = new Date().toISOString().slice(0, 10)
+
     return(
         <div>
             <Line data={data}
@@ -114,9 +147,9 @@ function Chart() {
             />
             <div className="chart-chart">
                 <h4>Total: {totalBalance}€</h4>
+                <h4>Time: {time}</h4>
             </div>
         </div>
-
 
     )
 }

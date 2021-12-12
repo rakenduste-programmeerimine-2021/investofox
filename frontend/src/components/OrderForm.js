@@ -4,12 +4,19 @@ import axios from 'axios'
 
 
 export default function OrderForm() {
-    const [email, setEmail] = useState('')
     const [ticker, setTicker] = useState('')
     const [amount, setAmount] = useState('')
     const [price, setPrice] = useState('')
     const [date, setDate] = useState('')
     const [comments, setComments] = useState('')
+
+    const getAuthUser = () =>{
+        const userId = localStorage.getItem('user')
+        const parsedID = JSON.parse(userId)
+        const id = parsedID.auth.user
+        //console.log(id)
+        return id
+    }
 
     const handleSubmit = async(value) =>{
         value.preventDefault()
@@ -25,11 +32,11 @@ export default function OrderForm() {
         console.log(orders)
 
         try{
-            axios.put(`http://localhost:8081/api/auth/add-order/${email}`, orders)
+            axios.put(`http://localhost:8081/api/auth/add-order/${getAuthUser()}`, orders)
             .then((res) => {
                 if(res){
                     console.log(res.data)
-                    console.log(`Order saved to ${email}'s account`)
+                    console.log(`Order: ${res} saved to ${getAuthUser()}'s account`)
 
                 }
             }).catch(e =>{
@@ -50,17 +57,6 @@ export default function OrderForm() {
                 <form onSubmit={handleSubmit} className="orderForm-content">
                 <div>
                     <div className="orderForm-row">
-                        <label>Email</label>
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="User email"
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            autoFocus
-                        />
-                    </div>
-                    <div className="orderForm-row">
                         <label>Ticker</label>
                         <input
                             type="text"
@@ -68,6 +64,7 @@ export default function OrderForm() {
                             placeholder="Ticker symbol"
                             onChange={(e) => setTicker(e.target.value)}
                             required
+                            autoFocus
                         />
                     </div>
                     <div className="orderForm-row">

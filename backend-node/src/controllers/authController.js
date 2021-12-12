@@ -170,7 +170,7 @@ exports.deleteUser = async (req, res) => {
 exports.addOrder = async (req, res) => {
 
   const {
-    email
+    id
   } = req.params
 
   const {
@@ -184,7 +184,7 @@ exports.addOrder = async (req, res) => {
 
   try {
     const user = await User.findOneAndUpdate({
-      email: email
+      _id: id
     }, {
       $push: {
         orders: {
@@ -233,12 +233,10 @@ exports.getOrders = async (req, res) => {
 }; // end of getOrders
 
 
-//doesnt work probably, just copy pasted
 exports.deleteOrder = async (req, res) => {
 
   const {
-    email,
-    id
+    id, orderId
   } = req.params
 
 
@@ -246,7 +244,7 @@ exports.deleteOrder = async (req, res) => {
     const user = await User.findByIdAndDelete({
       _id: id
     }, {
-      $push: {
+      $: {
         orders: {
           ticker: ticker,
           amount: amount,
