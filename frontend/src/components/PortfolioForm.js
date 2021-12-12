@@ -1,6 +1,8 @@
-import axios from "axios";
-import React, { useEffect, useState } from 'react';
+import axios from "axios"
+import React, { useState } from 'react'
+import { STOCK_API, TOKEN } from "./Utils/StockApi"
 import './PortfolioForm.css';
+
 
 export function PortfolioForm() {
 
@@ -12,11 +14,10 @@ export function PortfolioForm() {
 
     const handleSubmit = async(value) =>{
         value.preventDefault()
-        const apikey= "M7DSRJECMBCEEWGF"
         const tickers = symbol
 
         try{
-            axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${tickers}&apikey=${apikey}`)
+            axios.get(`${STOCK_API}&symbol=${tickers}&apikey=${TOKEN}`)
             .then(res =>{
                 if(res){
                     console.log(res.data)
@@ -29,6 +30,7 @@ export function PortfolioForm() {
                     setStockChartXValues(key)
                     setStockChartYValues(data[`Time Series (Daily)`]
                     [key]['4. close'])
+                    console.log("key "+ key)
                     setStockChartZValues(data[`Meta Data`]['2. Symbol'])
                     console.log("Price: " + stockChartYValues)
                     console.log("symbol: " + stockChartZValues)
