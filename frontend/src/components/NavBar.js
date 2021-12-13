@@ -15,22 +15,22 @@ const NavBar = ({title, children}) => {
                     </Link>
                     <div className="navBarButtonsDiv">
                         <Link to="./stock-api">
-                            <button className="navBarButton">Stock fetch</button>
+                            <button className="navBarButton" data-testid="stock-fetch-test">Stock fetch</button>
                         </Link>
                         <Link to="./add-order">
-                            <button className="navBarButton">Add order</button>
+                            <button className="navBarButton" data-testid="add-order-test">Add order</button>
                         </Link>
                         <Link to="./orders">
-                            <button className="navBarButton">Orders</button>
+                            <button className="navBarButton" data-testid="orders-test">Orders</button>
                         </Link>
                         <Link to="./chart">
-                            <button className="navBarButton">Chart</button>
+                            <button className="navBarButton" data-testid="chart-test">Chart</button>
                         </Link>
                     </div>
                 </div>
                 <div className="bottomHalf">
                     <Link to="./settings">
-                        <button className="settingsButton">Settings</button>
+                        <button className="settingsButton" data-testid="settings-test">Settings</button>
                     </Link>
                     <p className="message">Made with ♡ by the InvestoFox team</p>
                 </div>

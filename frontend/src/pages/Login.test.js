@@ -1,15 +1,14 @@
 import React from 'react'
-import Login from './Login'
-import { render, fireEvent } from '@testing-library/react'
-import { act } from 'react-dom/test-utils'
-import * as ReactDOM from "react-dom"
+import { render } from '@testing-library/react'
 import LoginForm from '../components/LoginForm'
+import { BrowserRouter } from 'react-router-dom'
+import Store from "../store";
 
 describe("Loginform", () => {
 
   describe("Render LoginForm", () => {
     it("Renders Loginform", () => {
-        render(<LoginForm />)
+        <Store>render(<BrowserRouter><LoginForm /></BrowserRouter>)</Store>
     });
   })
 })

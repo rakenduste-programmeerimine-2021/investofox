@@ -3,20 +3,14 @@ import LoginForm from './Loginform'
 import { render, fireEvent } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 import * as ReactRedux from 'react-combine-reducers';
+import { BrowserRouter } from 'react-router-dom'
 
 describe("Loginform", () => {
   describe("with valid inputs", () => {
     it('calls the onSubmit function', async () => {
       const mockOnSubmit = jest.fn()
-
-      beforeAll(() => {
-        // tells useDispatch to return the mocked dispatch
-        ReactRedux.useDispatch = jest.fn().mockImplementation(() => mockOnSubmit);
-        // tells useSelector to return an empty array
-        ReactRedux.useSelector = jest.fn().mockImplementation(() => []);
-      });
       
-      const {getByLabelText, getByRole} = render(<LoginForm onSubmit={mockOnSubmit}/>)
+      const {getByLabelText, getByRole} = render(<BrowserRouter><LoginForm onSubmit={mockOnSubmit}/></BrowserRouter>)
 
 
 
