@@ -6,11 +6,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {useState, useEffect} from 'react'
+import DeleteIcon from "@mui/icons-material/Delete"
+import { useState, useContext, useEffect } from 'react';
+import { Context } from "../store"
 import axios from "axios"
 import { Checkbox } from '@mui/material';
 import stockFetcher from '../components/StockFetcher';
 import "./OrderList.css"
+import { removeOrder } from '../store/actions';
 
 
 export default function OrderList() {
@@ -20,6 +23,8 @@ export default function OrderList() {
   const [profit, setProfit] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [fetchArray, setFetchArray] = useState([]);
+  const [stock, setStock] = useState([]);
+  const [state, dispatch] = useContext(Context)
 
   const orders = []
 
@@ -72,14 +77,15 @@ export default function OrderList() {
                 const fee = foo[i]
                 setFetchArray(prev =>[...prev, fee])
               }
-
-              if(fetchArray.length > 0){
-                stockFetcher(fetchArray, setFetchArray, profitLossCalculator)
-              }
           }else if(!response.data[orders] < 1){
             setErrorMsg("No orders to display. Add orders and try again")
           }
-      }).catch(e =>{
+      }).then((() =>{
+        if(fetchArray.length > 0){
+          stockFetcher(fetchArray, setFetchArray, profitLossCalculator)
+        }
+      }))
+      .catch(e =>{
           setErrorMsg("Something went wrong while trying to get your orders")
           console.log(errorMsg + e)
       }).finally(() => {
@@ -92,13 +98,9 @@ export default function OrderList() {
 
   console.log("This is fetched array: " + JSON.stringify(fetchArray))
 
-  useEffect (() =>{
-      getOrders()
+  useEffect(async() =>{
+    getOrders()
   }, [])
-
-
-
-
 
 
   //if data is being fetched
@@ -115,9 +117,11 @@ export default function OrderList() {
         <div style={{display: "inline-block", width: "150vh"}}>
           <TableContainer component={Paper} sx={{maxWidth: 1200, padding: 6, margin: "auto", marginTop: 10, marginBottom: 10}}>
             <h1 style={{textAlign: "center"}}>Your orders, {userInfo.firstName}</h1>
-            <div>            <h4>Total Profit: <p style={{color: `${profitLossTotalCalculator(fetchArray) <= 0 ? "red" : "green"}`}}>{profitLossTotalCalculator(fetchArray)}</p>
-            </h4></div>
-
+            <div> 
+              <h4>
+                Total profit: <p style={{color: `${profitLossTotalCalculator(fetchArray) <= 0 ? "red" : "green"}`}}>{profitLossTotalCalculator(fetchArray)}€</p>
+              </h4>
+            </div>
             <Table sx={{padding: 20, minHeight: 350,}} aria-label="simple table">
               <TableHead>
                 <TableRow sx={{maxHeight: 600}}>
@@ -137,9 +141,15 @@ export default function OrderList() {
                     key={row.ticker}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
-                  <TableCell padding= "checkbox">
-                      <Checkbox color="primary" />
-                  </TableCell>
+                  <TableCell>
+                    <span
+                      style={{ cursor: "pointer" }}
+                      onClick={() => dispatch(removeOrder(getAuthUser(), row.id))}
+                      >
+                      <DeleteIcon sx={{ color: "red" }} />
+                    </span>
+                    </TableCell>
+
                     <TableCell component="th" scope="row">
                       {row.ticker}
                     </TableCell>
@@ -160,9 +170,7 @@ export default function OrderList() {
           </TableContainer>
           <button onClick={getOrders}>Update table</button>
         </div>
-
       </div>
-
     </div>
     
   )

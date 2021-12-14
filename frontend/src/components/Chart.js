@@ -26,12 +26,12 @@ function Chart() {
 
 
     //fetch user data
-    const userData = (userAuth) =>{
+    const userData = async(userAuth) =>{
 
         setTotalBalancehistory([])
 
         try{
-            axios.get(`http://localhost:8081/api/auth/user/${userAuth}`)
+            await axios.get(`http://localhost:8081/api/auth/user/${userAuth}`)
             .then(res =>{
                 const result = res.data
                 const orders = result.orders
@@ -85,8 +85,8 @@ function Chart() {
 
 
 
-    useEffect(() => {
-        userData(getAuthUser())
+    useEffect(async() => {
+        await userData(getAuthUser())
     }, [])
 
     /*console.log("Total balance: " + JSON.stringify(totalBalance))
@@ -114,10 +114,13 @@ function Chart() {
     //visual options
     const options = {
         maintainAspectRation: true,
+        responsive: true,
+        responsiveAnimationDuration: 0,
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    fontSize: 20,
                 }
             }]
         },
@@ -138,11 +141,13 @@ function Chart() {
 
     var time = new Date().toISOString().slice(0, 10)
 
+
+
     return(
         <div>
             <Line data={data}
-                width={1500}
-                height={400}
+                width={"1000vh"}
+                height={"400vh"}
                 options={options}
             />
             <div className="chart-chart">
