@@ -71,9 +71,7 @@ exports.deleteOrder = async (req, res) => {
 
         if (!deleteOrder) res.status(404).send("No order with that id found");
 
-        res
-            .status(200)
-            .send(`Successfully deleted the following order: \n ${deleteOrder}`);
+        res.status(200).send(`Successfully deleted the following order: \n ${deleteOrder}`);
     } catch (e) {
         res.status(400).json({
             error: e.message,
