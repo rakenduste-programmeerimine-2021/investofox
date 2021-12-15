@@ -84,7 +84,6 @@ export function PortfolioForm() {
                                 Price: {stockChartYValues}
                             </p>
                             <p >
-                                {change < 0 ?(<div style={{color: "red"}}>Change: {change}</div>) : (<div style={{color: "green"}}>Change: {change}</div>)}
                                 Change: {change}
                             </p>
                         </div>

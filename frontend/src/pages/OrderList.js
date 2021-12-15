@@ -44,7 +44,7 @@ export default function OrderList() {
       comments: row.comments
     }
 
-    console.log("order " + JSON.stringify(order))
+    console.log("Deleted order " + JSON.stringify(order))
 
     /*try{
       await axios.delete(`http://localhost:8081/api/auth/delete-order/${getAuthUser()}`, order)
