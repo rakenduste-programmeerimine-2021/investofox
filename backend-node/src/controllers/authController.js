@@ -192,7 +192,7 @@ exports.addOrder = async (req, res) => {
           amount: amount,
           price: price,
           date: date,
-          comments: comments,
+          comments: comments
         }
       },
     })
@@ -235,7 +235,7 @@ exports.getOrders = async (req, res) => {
 exports.deleteOrder = async (req, res) => {
 
   const {
-    id,
+    id
   } = req.params
 
   const {
@@ -243,8 +243,7 @@ exports.deleteOrder = async (req, res) => {
     amount,
     price,
     date,
-    comments,
-
+    comments
   } = req.body;
 
 

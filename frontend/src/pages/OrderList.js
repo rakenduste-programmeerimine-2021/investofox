@@ -130,6 +130,9 @@ export default function OrderList() {
   }, [])
 
 
+  useEffect(async() =>{
+    getOrders()
+  }, [])
 
 
   //if data is being fetched
