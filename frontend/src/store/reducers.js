@@ -1,6 +1,6 @@
 /* Reducer takes in an action defined in actions.js. Then handles the state of an app using the action*/
 
-import {USER_LOGIN, USER_LOGOUT } from "./actions";
+import {USER_LOGIN, USER_LOGOUT, ORDER_REMOVE } from "./actions";
 
 const userReducer = (state, action) => {
     switch(action.type){
@@ -17,6 +17,11 @@ const userReducer = (state, action) => {
                 ...state,
                 token: null,
                 user: null
+            }
+        case ORDER_REMOVE:
+            return{
+                ...state,
+                data: state.data.filter(post => action.payload.orderId !== action.payload)
             }
         default:
             return state

@@ -1,5 +1,4 @@
 
-cd local-dev
-docker-compose build
-
-http://localhost:3000
+cd backend-node ja frontend - npm install
+install node
+cd local-dev - docker build või docker-compose up -d

@@ -11,9 +11,11 @@ function RegisterForm() {
     const [email, setEmail] = useState('')
     const [redirect, setRedirect] = useState(false) 
     const [visible, setVisible] = useState("password")
+    const [errorMsg, setErrorMsg] = useState("")
     const [checkVisible, setCheckVisible] = useState("password")
 
     const handleSubmit = async (value) => {
+        setErrorMsg("")
 
         //prevents it updating every frame
         value.preventDefault()
@@ -34,33 +36,19 @@ function RegisterForm() {
                 if(res){
                     console.log("User registered successfully!")
                     setRedirect(true)
+                }else{
+                    /////setErrorMsg("An user with this email already exists")
+                    console.log(res.data)
                 }
 
             }).catch(error => {
                 console.log(error)
+                setErrorMsg("An user with this email already exists")
             })
 
         } catch(error){
             console.error(error)
         }
-
-        //post req to register user
-        /*await fetch('http://localhost:8081/api/auth/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            //mode: no-cors resolves Cors issues
-            mode: 'no-cors',
-            body: JSON.stringify(user)
-        }).then((res) => {
-            if(res.ok)
-                console.log("User registered successfully!")
-                const successMsg = console.log("User registered successfully!")
-            return successMsg
-        }).catch((e) => {
-            console.error(e)
-        })*/
     }
 
     //redirects to portfolio page
@@ -75,7 +63,11 @@ function RegisterForm() {
             <form className="register-content" onSubmit={handleSubmit}>
             <div className="register-header">
                 <p className="register-title">Registration</p>
+                { <span style={{color: "red"}}>
+                    {errorMsg}
+                </span> }
             </div>
+
                 <div className="register-row">
                     <label>First name</label>
                     <input 

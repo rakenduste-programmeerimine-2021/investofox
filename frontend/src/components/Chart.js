@@ -9,6 +9,7 @@ function Chart() {
     const [positionValues, setPositionValues] = useState([])
     const [totalBalance, setTotalBalance] = useState('')
     const [stock, setStock] = useState([])
+    const [authenticatedUser, setAuthenticatedUser] = useState(true)
 
     //get the logged in user from local storage then get user ID
     const getAuthUser = () =>{
@@ -17,7 +18,12 @@ function Chart() {
             const foo = JSON.parse(userId)
             const id = foo.auth.user
             //console.log(id)
-            return id
+            if(id == null || !id){
+                setAuthenticatedUser(false)
+            }else{
+                return id
+            }
+
         }catch(e){
             console.log(e)
             console.log("No auth")
@@ -26,13 +32,12 @@ function Chart() {
 
 
     //fetch user data
-    const userData = (userAuth) =>{
+    const userData = async(userAuth) =>{
 
         setTotalBalancehistory([])
-        console.log(stock)
 
         try{
-            axios.get(`http://localhost:8081/api/auth/user/${userAuth}`)
+            await axios.get(`http://localhost:8081/api/auth/user/${userAuth}`)
             .then(res =>{
                 const result = res.data
                 const orders = result.orders
@@ -86,8 +91,8 @@ function Chart() {
 
 
 
-    useEffect(() => {
-        userData(getAuthUser())
+    useEffect(async() => {
+        await userData(getAuthUser())
     }, [])
 
     /*console.log("Total balance: " + JSON.stringify(totalBalance))
@@ -115,10 +120,13 @@ function Chart() {
     //visual options
     const options = {
         maintainAspectRation: true,
+        responsive: true,
+        responsiveAnimationDuration: 0,
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    fontSize: 20,
                 }
             }]
         },
@@ -139,18 +147,29 @@ function Chart() {
 
     var time = new Date().toISOString().slice(0, 10)
 
+
+
     return(
         <div>
+        {authenticatedUser ? (
+        <div>
             <Line data={data}
-                width={1500}
-                height={400}
+                width={"1000vh"}
+                height={"400vh"}
                 options={options}
             />
             <div className="chart-chart">
                 <h4>Total: {totalBalance}€</h4>
                 <h4>Time: {time}</h4>
             </div>
+        </div>) : (
+            <block>
+            <h1>You are not logged in!</h1>
+            <a href="/login">Go back</a>
+            </block>
+        )}
         </div>
+
 
     )
 }

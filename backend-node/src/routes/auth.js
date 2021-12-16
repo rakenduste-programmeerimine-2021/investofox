@@ -53,6 +53,6 @@ router.delete("/delete/:id", validationMiddleware, authController.deleteUser)
 
 //order actions
 router.put("/add-order/:id", validationMiddleware, authController.addOrder)
-//router.get("/orders", authController.getOrders)
+router.delete("/delete-order/:id", authController.deleteOrder)
 
 module.exports = router

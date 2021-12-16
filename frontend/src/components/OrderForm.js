@@ -9,13 +9,25 @@ export default function OrderForm() {
     const [price, setPrice] = useState('')
     const [date, setDate] = useState('')
     const [comments, setComments] = useState('')
+    const [authenticatedUser, setAuthenticatedUser] = useState(true)
 
+    //get the logged in user from local storage then get user ID
     const getAuthUser = () =>{
-        const userId = localStorage.getItem('user')
-        const parsedID = JSON.parse(userId)
-        const id = parsedID.auth.user
-        //console.log(id)
-        return id
+        try{
+            const userId = localStorage.getItem('user')
+            const foo = JSON.parse(userId)
+            const id = foo.auth.user
+            //console.log(id)
+            if(id == null || !id){
+                setAuthenticatedUser(false)
+            }else{
+                return id
+            }
+
+        }catch(e){
+            console.log(e)
+            console.log("No auth")
+        }
     }
 
     const handleSubmit = async(value) =>{
@@ -54,6 +66,7 @@ export default function OrderForm() {
         <div className="orderForm-page" data-testid="orderFormPage">
             <h1 className="orderForm-title">Add order</h1>
             <div className="orderForm-contentContainer">
+                {authenticatedUser ? (   
                 <form onSubmit={handleSubmit} className="orderForm-content">
                 <div>
                     <div className="orderForm-row">
@@ -102,7 +115,12 @@ export default function OrderForm() {
                     </div>
                     <button className="orderForm-addOrderButton">Add order</button>
                 </div>
-                </form>
+            </form>) : (
+                <block>
+                    <h1>You are not logged in!</h1>
+                    <a href="/login">Go back</a>
+                </block>
+                )}
             </div>
         </div>
     )
