@@ -48,4 +48,16 @@ docker compose-up -d
 [Figma](https://www.figma.com/file/oj0dggGEE0yHlKxfRBSrm4/InvestoFox?node-id=0%3A1)
 
 ### Kuvatõmmised
-Tulevad tulevikus
+Your orders:
+![image](https://user-images.githubusercontent.com/70939487/146443830-6e79dccd-23d8-4a23-9fd6-c2bf4cac4770.png)
+
+Add orders:
+![image](https://user-images.githubusercontent.com/70939487/146443895-2e683f4d-bc53-4840-9f79-c3c11c29cab0.png)
+
+Chart:
+![image](https://user-images.githubusercontent.com/70939487/146443993-fcefa575-dbf4-4c80-bc48-d6bf31ad4a81.png)
+
+Get info on one stock:
+![image](https://user-images.githubusercontent.com/70939487/146444133-056b8eb6-d1dd-434b-9dac-5af14d55e980.png)
+
+
