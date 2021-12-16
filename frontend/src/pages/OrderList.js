@@ -155,7 +155,7 @@ export default function OrderList() {
   return (
     <div>
       {authenticatedUser ? (
-        <div style={{display: "flex", width: "150vh", minHeight: "100vh"}}>
+        <div style={{display: "flex", width: "150vh", minHeight: "100vh"}} data-testid="Ticker">
         <div style={{display: "inline-block", width: "150vh"}}>
           <TableContainer component={Paper} sx={{maxWidth: 1200, padding: 6, margin: "auto", marginTop: 10, marginBottom: 10}}>
             <h1 style={{textAlign: "center"}}>Your orders, {userInfo.firstName}</h1>

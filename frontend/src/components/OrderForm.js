@@ -63,12 +63,11 @@ export default function OrderForm() {
 
 
     return (
-
-        <div className="orderForm-page">
+        <div className="orderForm-page" data-testid="orderFormPage">
             <h1 className="orderForm-title">Add order</h1>
             <div className="orderForm-contentContainer">
-            {authenticatedUser ? (                
-            <form onSubmit={handleSubmit} className="orderForm-content">
+                {authenticatedUser ? (   
+                <form onSubmit={handleSubmit} className="orderForm-content">
                 <div>
                     <div className="orderForm-row">
                         <label>Ticker</label>
@@ -122,7 +121,6 @@ export default function OrderForm() {
                     <a href="/login">Go back</a>
                 </block>
                 )}
-            
             </div>
         </div>
     )

@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { STOCK_API_GLOBAL, TOKEN } from "./Utils/StockApi"
 import './PortfolioForm.css';
 
-
 export function PortfolioForm() {
 
     const [symbol, setSymbol] = useState('')
@@ -57,8 +56,8 @@ export function PortfolioForm() {
 
 
         return (
-            <div className="portfolioForm-page">
-                <h1>Stock info</h1>
+            <div className="portfolioForm-page" data-testid="portfolioFormPage">
+                <h1>Stock portfolio</h1>
                 <div className="portfolioForm-contentContainer">
                     <div className="portfolioForm-content">
                         <form onSubmit={handleSubmit}>

@@ -59,7 +59,7 @@ function RegisterForm() {
 
 
     return(
-        <div className="register-container">
+        <div className="register-container" data-testid="registerFormPage">
             <form className="register-content" onSubmit={handleSubmit}>
             <div className="register-header">
                 <p className="register-title">Registration</p>
