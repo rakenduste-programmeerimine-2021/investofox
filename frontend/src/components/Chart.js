@@ -9,6 +9,7 @@ function Chart() {
     const [positionValues, setPositionValues] = useState([])
     const [totalBalance, setTotalBalance] = useState('')
     const [stock, setStock] = useState([])
+    const [authenticatedUser, setAuthenticatedUser] = useState(true)
 
     //get the logged in user from local storage then get user ID
     const getAuthUser = () =>{
@@ -17,7 +18,12 @@ function Chart() {
             const foo = JSON.parse(userId)
             const id = foo.auth.user
             //console.log(id)
-            return id
+            if(id == null || !id){
+                setAuthenticatedUser(false)
+            }else{
+                return id
+            }
+
         }catch(e){
             console.log(e)
             console.log("No auth")
@@ -145,6 +151,8 @@ function Chart() {
 
     return(
         <div>
+        {authenticatedUser ? (
+        <div>
             <Line data={data}
                 width={"1000vh"}
                 height={"400vh"}
@@ -154,7 +162,14 @@ function Chart() {
                 <h4>Total: {totalBalance}€</h4>
                 <h4>Time: {time}</h4>
             </div>
+        </div>) : (
+            <block>
+            <h1>You are not logged in!</h1>
+            <a href="/login">Go back</a>
+            </block>
+        )}
         </div>
+
 
     )
 }

@@ -22,16 +22,29 @@ export default function OrderList() {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
   const [fetchArray, setFetchArray] = useState([]);
-  const [isDelete, setIsDelete] = useState(false);
   const [state, dispatch] = useContext(Context)
+  const [authenticatedUser, setAuthenticatedUser] = useState(true)
 
   const orders = []
 
-  const getAuthUser = () =>{
-    const userId = localStorage.getItem('user')
-    const parsedID = JSON.parse(userId)
-    const id = parsedID.auth.user
-    return id
+    //get the logged in user from local storage then get user ID
+    const getAuthUser = () =>{
+      try{
+          const userId = localStorage.getItem('user')
+          const foo = JSON.parse(userId)
+          const id = foo.auth.user
+          //console.log(id)
+          if(!id || id == null){
+            console.log(userId)
+            setAuthenticatedUser(false)
+          }else{
+              return id
+          }
+
+      }catch(e){
+          console.log(e)
+          console.log("No auth")
+      }
   }
 
   const deleteOrder = async(row) =>{
@@ -44,7 +57,7 @@ export default function OrderList() {
       comments: row.comments
     }
 
-    console.log("Deleted order " + JSON.stringify(order))
+    console.log("Deleted " + JSON.stringify(order))
 
     /*try{
       await axios.delete(`http://localhost:8081/api/auth/delete-order/${getAuthUser()}`, order)
@@ -83,56 +96,52 @@ export default function OrderList() {
     return profitLossTotal.toFixed(2);
   }
 
-  const getOrders = async()=>{
+  const getOrders = ()=>{
 
     setErrorMsg("")
     setFetchArray([])
   
-      try{
-        await axios.get(`http://localhost:8081/api/auth/user/${getAuthUser()}`)
+        axios.get(`http://localhost:8081/api/auth/user/${getAuthUser()}`)
         .then(response => {
             if(response){
                 setUserInfo(response.data)
-  
-                const foo = userInfo.orders
-                for(var i in foo){
-                  const fee = foo[i]
-                  setFetchArray(prev =>[...prev, fee])
-                }
+                console.log(userInfo)
+
             }else if(!response.data[orders] < 1){
               setErrorMsg("No orders to display. Add orders and try again")
             }
         }).then((() =>{
           if(fetchArray.length > 0){
             console.log("jeje")
-            Promise.all([stockFetcher(fetchArray, setFetchArray, profitLossCalculator)])
-            .then(function (results) {
-              const acc = results[0]
-              console.log("im here")
-            });
           }
         }))
         .catch(e =>{
             setErrorMsg("Something went wrong while trying to get your orders")
             console.log(errorMsg + e)
-        }).finally(() => {
-            setLoading(false)
         })
-      }catch(e){
-        console.log(e)
+        setLoading(false)
+
+      const foo = userInfo.orders
+      for(var i in foo){
+        const fee = foo[i]
+        setFetchArray(prev =>[...prev, fee])
       }
-    }
 
+      if(fetchArray.length > 0){
+        stockFetcher(fetchArray, setFetchArray, profitLossCalculator)
+      }
+  }
 
+    
 
   useEffect(() =>{
     getOrders()
   }, [])
 
 
-  useEffect(async() =>{
-    getOrders()
-  }, [])
+
+
+
 
 
   //if data is being fetched
@@ -145,7 +154,8 @@ export default function OrderList() {
   
   return (
     <div>
-      <div style={{display: "flex", width: "150vh", minHeight: "100vh"}}>
+      {authenticatedUser ? (
+        <div style={{display: "flex", width: "150vh", minHeight: "100vh"}}>
         <div style={{display: "inline-block", width: "150vh"}}>
           <TableContainer component={Paper} sx={{maxWidth: 1200, padding: 6, margin: "auto", marginTop: 10, marginBottom: 10}}>
             <h1 style={{textAlign: "center"}}>Your orders, {userInfo.firstName}</h1>
@@ -199,7 +209,13 @@ export default function OrderList() {
           <button onClick={() => getOrders()}>Update table</button>
         </div>
       </div>
-    </div>
-    
+      ) : (
+        <block>
+        <h1>You are not logged in!</h1>
+        <a href="/login">Go back</a>
+        </block>
+    )}
+      
+  </div>
   )
 }
