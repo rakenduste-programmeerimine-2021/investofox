@@ -55,7 +55,7 @@ export function PortfolioForm() {
 
 
         return (
-            <div className="portfolioForm-page">
+            <div className="portfolioForm-page" data-testid="portfolioFormPage">
                 <h1>Stock portfolio</h1>
                 <div className="portfolioForm-contentContainer">
                     <div className="portfolioForm-content">

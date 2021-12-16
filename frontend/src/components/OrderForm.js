@@ -51,7 +51,7 @@ export default function OrderForm() {
 
 
     return (
-        <div className="orderForm-page">
+        <div className="orderForm-page" data-testid="orderFormPage">
             <h1 className="orderForm-title">Add order</h1>
             <div className="orderForm-contentContainer">
                 <form onSubmit={handleSubmit} className="orderForm-content">

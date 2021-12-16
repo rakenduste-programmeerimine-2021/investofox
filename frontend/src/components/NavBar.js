@@ -7,7 +7,7 @@ import './NavBar.css';
 
 const NavBar = ({title, children}) => {
     return(
-        <div className="page">
+        <div className="page" data-testid="navbar">
             <div className="leftBar">
                 <div className="topHalf">
                     <Link to="./chart">

@@ -1,7 +1,7 @@
 import React from 'react';
 import './LoginForm.css';
 import {Redirect, Link } from 'react-router-dom';
-import { useState, useContext, } from 'react';
+import { useState, useContext } from 'react';
 import { Context } from "../store"
 import { loginUser } from '../store/actions';
 
@@ -53,7 +53,7 @@ function LoginForm() {
     }
     
     return(
-        <div className="login-container">
+        <div className="login-container" data-testid="loginform">
             <form className="login-content" onSubmit={handleSubmit}>
             <div className="login-header">
                 <p className="login-title">Login</p>
