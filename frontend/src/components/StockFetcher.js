@@ -4,8 +4,8 @@ import axios from "axios"
 //code from https://motion-software.com/blog/how-create-stock-portfolio-app-reactjs-firebase
 
 //Function which fetches the current prices and updates our state with current prices and profit/loss
-const stockFetcher = async(stocks, setStocks, profitLossCalculator) => {
-    await stocks.forEach(async (stock) => {
+const stockFetcher = (stocks, setStocks, profitLossCalculator) => {
+    stocks.forEach(async(stock) => {
         console.log(stock)
         try {
             const ticker = stock.ticker

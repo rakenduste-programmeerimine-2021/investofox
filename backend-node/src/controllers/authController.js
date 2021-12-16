@@ -178,7 +178,7 @@ exports.addOrder = async (req, res) => {
     amount,
     price,
     date,
-    comments
+    comments,
 
   } = req.body;
 
@@ -244,27 +244,31 @@ exports.deleteOrder = async (req, res) => {
     price,
     date,
     comments
-
   } = req.body;
 
 
   try {
-    const user = await User.findByIdAndDelete({
+    const user = await User.findOneAndUpdate({
       _id: id
     }, {
-      $delete: {
+      $pull: {
         orders: {
-          id: orderId
+          ticker: ticker,
+          amount: amount,
+          price: price,
+          date: date,
+          comments: comments
         }
-      },
-    })
+      }
+
+      })
 
     if (!user) {
-      console.log('Sorry that user does not exist')
+      console.log('No orders to delete')
     }
 
     res.status(200).send(user).json({
-      message: `Order: ${orders} \n has been added to ${user}`
+      message: `Order: ${orders} \n has been deleted from ${user}`
     });
 
   } catch (error) {

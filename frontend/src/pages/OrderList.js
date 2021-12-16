@@ -7,10 +7,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import DeleteIcon from "@mui/icons-material/Delete"
+import { Button } from '@mui/material';
 import { useState, useContext, useEffect } from 'react';
 import { Context } from "../store"
 import axios from "axios"
-import { Checkbox } from '@mui/material';
 import stockFetcher from '../components/StockFetcher';
 import "./OrderList.css"
 import { removeOrder } from '../store/actions';
@@ -20,19 +20,57 @@ export default function OrderList() {
   
   const [userInfo, setUserInfo] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [profit, setProfit] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [fetchArray, setFetchArray] = useState([]);
-  const [stock, setStock] = useState([]);
   const [state, dispatch] = useContext(Context)
+  const [authenticatedUser, setAuthenticatedUser] = useState(true)
 
   const orders = []
 
-  const getAuthUser = () =>{
-    const userId = localStorage.getItem('user')
-    const parsedID = JSON.parse(userId)
-    const id = parsedID.auth.user
-    return id
+    //get the logged in user from local storage then get user ID
+    const getAuthUser = () =>{
+      try{
+          const userId = localStorage.getItem('user')
+          const foo = JSON.parse(userId)
+          const id = foo.auth.user
+          //console.log(id)
+          if(!id || id == null){
+            console.log(userId)
+            setAuthenticatedUser(false)
+          }else{
+              return id
+          }
+
+      }catch(e){
+          console.log(e)
+          console.log("No auth")
+      }
+  }
+
+  const deleteOrder = async(row) =>{
+
+    const order = {
+      ticker: row.ticker,
+      amount: row.amount,
+      price: row.price,
+      date: row.date,
+      comments: row.comments
+    }
+
+    console.log("Deleted " + JSON.stringify(order))
+
+    /*try{
+      await axios.delete(`http://localhost:8081/api/auth/delete-order/${getAuthUser()}`, order)
+      .then((res) =>{
+        console.log("deleted " + JSON.stringify(res))
+        setIsDelete(true)
+      }).catch(e =>{
+        console.log(e)
+      })
+    }catch(e){
+      console.log("inside deleteORder: " + e)
+    }*/
+
   }
 
   //Calculates the profit or loss for a single position
@@ -41,10 +79,6 @@ export default function OrderList() {
 
     if (currentPrice) {
       profitLoss = (currentPrice - price) * quantity;
-    }
-
-    if(currentPrice > price){
-      setProfit(true)
     }
     return profitLoss.toFixed(2)
   }
@@ -62,45 +96,52 @@ export default function OrderList() {
     return profitLossTotal.toFixed(2);
   }
 
-  const getOrders = async() =>{
+  const getOrders = ()=>{
+
     setErrorMsg("")
     setFetchArray([])
+  
+        axios.get(`http://localhost:8081/api/auth/user/${getAuthUser()}`)
+        .then(response => {
+            if(response){
+                setUserInfo(response.data)
+                console.log(userInfo)
 
-    try{
-      await axios.get(`http://localhost:8081/api/auth/user/${getAuthUser()}`)
-      .then(response => {
-          if(response){
-              setUserInfo(response.data)
-
-              const foo = userInfo.orders
-              for(var i in foo){
-                const fee = foo[i]
-                setFetchArray(prev =>[...prev, fee])
-              }
-          }else if(!response.data[orders] < 1){
-            setErrorMsg("No orders to display. Add orders and try again")
+            }else if(!response.data[orders] < 1){
+              setErrorMsg("No orders to display. Add orders and try again")
+            }
+        }).then((() =>{
+          if(fetchArray.length > 0){
+            console.log("jeje")
           }
-      }).then((() =>{
-        if(fetchArray.length > 0){
-          stockFetcher(fetchArray, setFetchArray, profitLossCalculator)
-        }
-      }))
-      .catch(e =>{
-          setErrorMsg("Something went wrong while trying to get your orders")
-          console.log(errorMsg + e)
-      }).finally(() => {
-          setLoading(false)
-      })
-    }catch(e){
-      console.log(e)
-    }
+        }))
+        .catch(e =>{
+            setErrorMsg("Something went wrong while trying to get your orders")
+            console.log(errorMsg + e)
+        })
+        setLoading(false)
+
+      const foo = userInfo.orders
+      for(var i in foo){
+        const fee = foo[i]
+        setFetchArray(prev =>[...prev, fee])
+      }
+
+      if(fetchArray.length > 0){
+        stockFetcher(fetchArray, setFetchArray, profitLossCalculator)
+      }
   }
 
-  console.log("This is fetched array: " + JSON.stringify(fetchArray))
+    
 
-  useEffect(async() =>{
+  useEffect(() =>{
     getOrders()
   }, [])
+
+
+
+
+
 
 
   //if data is being fetched
@@ -113,7 +154,8 @@ export default function OrderList() {
   
   return (
     <div>
-      <div style={{display: "flex", width: "150vh", minHeight: "100vh"}}>
+      {authenticatedUser ? (
+        <div style={{display: "flex", width: "150vh", minHeight: "100vh"}}>
         <div style={{display: "inline-block", width: "150vh"}}>
           <TableContainer component={Paper} sx={{maxWidth: 1200, padding: 6, margin: "auto", marginTop: 10, marginBottom: 10}}>
             <h1 style={{textAlign: "center"}}>Your orders, {userInfo.firstName}</h1>
@@ -137,19 +179,15 @@ export default function OrderList() {
               </TableHead>
               <TableBody>
                 {fetchArray ? (fetchArray.map((row) => (
-                  <TableRow
+                    <TableRow
                     key={row.ticker}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                   <TableCell>
-                    <span
-                      style={{ cursor: "pointer" }}
-                      onClick={() => dispatch(removeOrder(getAuthUser(), row.id))}
-                      >
-                      <DeleteIcon sx={{ color: "red" }} />
-                    </span>
+                    <Button onClick={() => deleteOrder(row)}>
+                      <DeleteIcon />
+                    </Button>
                     </TableCell>
-
                     <TableCell component="th" scope="row">
                       {row.ticker}
                     </TableCell>
@@ -168,10 +206,16 @@ export default function OrderList() {
               </TableBody>
             </Table>
           </TableContainer>
-          <button onClick={getOrders}>Update table</button>
+          <button onClick={() => getOrders()}>Update table</button>
         </div>
       </div>
-    </div>
-    
+      ) : (
+        <block>
+        <h1>You are not logged in!</h1>
+        <a href="/login">Go back</a>
+        </block>
+    )}
+      
+  </div>
   )
 }
