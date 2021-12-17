@@ -43,7 +43,7 @@ function RegisterForm() {
 
             }).catch(error => {
                 console.log(error)
-                setErrorMsg("An user with this email already exists")
+                setErrorMsg("An user with this email already exists" + error)
             })
 
         } catch(error){
