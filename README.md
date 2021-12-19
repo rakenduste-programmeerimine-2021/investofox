@@ -55,9 +55,9 @@ Add orders:
 ![image](https://user-images.githubusercontent.com/70939487/146443895-2e683f4d-bc53-4840-9f79-c3c11c29cab0.png)
 
 Chart:
-![image](https://user-images.githubusercontent.com/70939487/146443993-fcefa575-dbf4-4c80-bc48-d6bf31ad4a81.png)
+![image](https://user-images.githubusercontent.com/70939487/146673081-15256395-8289-430f-b68f-b821aa4179a7.png)
 
 Get info on one stock:
-![image](https://user-images.githubusercontent.com/70939487/146444133-056b8eb6-d1dd-434b-9dac-5af14d55e980.png)
+![image](https://user-images.githubusercontent.com/70939487/146673043-9f3d90d2-5987-4e34-a74e-180da1ea034b.png)
 
 
