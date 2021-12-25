@@ -1,1 +1,1 @@
-$ echo "web: node backend-node/src/server.js" > Procfile
+web: node backend-node/src/server.js
