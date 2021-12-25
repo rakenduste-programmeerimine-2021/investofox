@@ -18,8 +18,8 @@
     "nodemon": "^2.0.15"
   },
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon --inspect=0.0.0.0:9000 -L src/server.js"
+    "start": "node backend-node/src/server.js",
+    "dev": "nodemon --inspect=0.0.0.0:9000 -L backend-node/src/server.js"
   },
   "keywords": [],
   "author": "",
