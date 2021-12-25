@@ -1,20 +1,27 @@
 {
-  "name": "investofox",
+  "name": "backend-node",
   "version": "1.0.0",
-  "description": "[![Status](https://img.shields.io/badge/status-active-success.svg)]() [![GitHub Issues](https://img.shields.io/github/issues/rakenduste-programmeerimine-2021/investofox.svg)](https://github.com/rakenduste-programmeerimine-2021/investofox/issues) [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/rakenduste-programmeerimine-2021/investofox.svg)](https://github.com/rakenduste-programmeerimine-2021/investofox/pulls) ## Autorid [@Gaspar Luik](github.com/gasparluik) [@Liisa Mikola](github.com/liismik) ### Sisukord - [Autorid](#Autorid) - [Projekt](#Projekt) - [Funktsionaalsus](#Funktsionaalsus) - [Installeerimine](#Installeerimisjuhend) - [Tarkvara](#Tarkvara) - [Kuvatõmmised](#Kuvatõmmised)",
-  "main": "index.js",
+  "description": "",
+  "main": "src/server.js",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.13.0",
+    "jsonwebtoken": "^8.5.1",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "mongoose": "^6.0.12",
+    "nodemon": "^2.0.15"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "dev": "nodemon --inspect=0.0.0.0:9000 -L src/server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gaspurr/investofox.git"
-  },
+  "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gaspurr/investofox/issues"
-  },
-  "homepage": "https://github.com/gaspurr/investofox#readme",
-  "keywords": []
+  "license": "ISC"
 }
