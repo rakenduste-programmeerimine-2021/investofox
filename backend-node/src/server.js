@@ -26,7 +26,6 @@ app.use('/api/order', orderRoutes)
 app.get('/secret', jwtAuth, (req, res) => {
   res.send('Secret Hello World!')
 })
-
 //fetch testing
 app.use('/stock', jwtAuth, function(req, res, next) {
   const apikey = "M7DSRJECMBCEEWGF";
@@ -64,12 +63,9 @@ app.use('/stock', jwtAuth, function(req, res, next) {
   }
 })
 
-
-
 app.get('/auth', jwtAuth, (req, res) => {
   res.status(200).send("Welcome home, cowboy")
 })
-
 
 app.get('/', (req, res) => {
   res.send('Hello World!')

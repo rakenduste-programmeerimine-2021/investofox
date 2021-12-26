@@ -11,10 +11,10 @@
     "express": "^4.17.1",
     "express-validator": "^6.13.0",
     "jsonwebtoken": "^8.5.1",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "mongoose": "^6.0.12"
   },
   "devDependencies": {
-    "mongoose": "^6.0.12",
     "nodemon": "^2.0.15"
   },
   "scripts": {
