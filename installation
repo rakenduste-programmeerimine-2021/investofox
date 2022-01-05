@@ -1,4 +1,5 @@
 
-cd backend-node ja frontend - npm install
-install node
-cd local-dev - docker build või docker-compose up -d
+
+cd local-dev
+docker-compose build
+docker-compose up -d
