@@ -58,6 +58,6 @@ Chart:
 ![image](https://user-images.githubusercontent.com/70939487/146673081-15256395-8289-430f-b68f-b821aa4179a7.png)
 
 Get info on one stock:
-![image](https://user-images.githubusercontent.com/70939487/146673043-9f3d90d2-5987-4e34-a74e-180da1ea034b.png)
+![image](https://user-images.githubusercontent.com/70939487/148220451-b7acb38e-1715-4bc1-a080-d2ee16ee9d0a.png)
 
 
