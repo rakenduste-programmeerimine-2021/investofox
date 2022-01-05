@@ -83,13 +83,23 @@ export function PortfolioForm() {
         }
         } //end of get second api
 
+        function reverseArr(array){
+            console.log(array)
+            const reversedArray = array.reverse()
+
+            console.log("reversed array " + reversedArray)
+
+            return reversedArray
+        }
+
+
 
     //data that is seen in the chart
     const data = {
-        labels: labels,
+        labels: reverseArr([...labels]),
         datasets: [{
             label: 'Portfolio performance',
-            data: values,
+            data: reverseArr([...values]),
             borderColor: "green",
             borderWidth: 2,
             backgroundColor: ["rgba(0, 255, 0, .1)"]
@@ -104,7 +114,7 @@ export function PortfolioForm() {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true,
+                    beginAtZero: false,
                     fontSize: 20,
                 }
             }]
