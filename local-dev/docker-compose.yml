@@ -30,7 +30,7 @@ services:
       - '8081:3000'
       - '9000:9000'
     environment: 
-      MONGODB_URI: mongodb://root:root@mongo/investofox?authSource=admin
+      MONGODB_URI: mongodb+srv://Gaspar:<password>@cluster0.wkywv.mongodb.net/test
     volumes: 
       - '../backend-node:/home/node/app:delegated'
     command: 'run dev'
