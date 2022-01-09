@@ -16,8 +16,8 @@ services:
     ports: 
       - '27017:27017'
     environment: 
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_ROOT_USERNAME: Gaspar
+      MONGO_INITDB_ROOT_PASSWORD: vegvisir
       # siia on vaja volumes-it, et andmebaas salvestaks tulemusi
     container_name: 'mongo'
 
@@ -30,7 +30,7 @@ services:
       - '8081:3000'
       - '9000:9000'
     environment: 
-      MONGODB_URI: mongodb+srv://Gaspar:<password>@cluster0.wkywv.mongodb.net/test
+      MONGODB_URI: mongodb+srv://admin:lollikindel@investofox.wkywv.mongodb.net/investofox
     volumes: 
       - '../backend-node:/home/node/app:delegated'
     command: 'run dev'

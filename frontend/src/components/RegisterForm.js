@@ -32,7 +32,6 @@ function RegisterForm() {
         try{
             axios.post('http://localhost:8081/api/auth/signup', user)
             .then(res => {
-                console.log(res.data)
                 if(res){
                     console.log("User registered successfully!")
                     setRedirect(true)

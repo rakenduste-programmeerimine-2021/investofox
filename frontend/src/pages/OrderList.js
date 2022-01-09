@@ -10,7 +10,7 @@ import DeleteIcon from "@mui/icons-material/Delete"
 import { useState, useContext, useEffect } from 'react';
 import { Context } from "../store"
 import axios from "axios"
-import { Checkbox } from '@mui/material';
+import { Button, Checkbox } from '@mui/material';
 import stockFetcher from '../components/StockFetcher';
 import "./OrderList.css"
 import { removeOrder } from '../store/actions';
@@ -167,8 +167,11 @@ export default function OrderList() {
                 )}
               </TableBody>
             </Table>
+            <div style={{display: "flex", justifyContent: "left", marginLeft: 10}}>
+            <Button variant="contained" onClick={getOrders}>Update table</Button>
+          </div>
           </TableContainer>
-          <button onClick={getOrders}>Update table</button>
+
         </div>
       </div>
     </div>

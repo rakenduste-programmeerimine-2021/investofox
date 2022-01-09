@@ -30,7 +30,6 @@ function LoginForm() {
         try{
             axios.post('http://localhost:8081/api/auth/login', user)
             .then(res => {
-                console.log(res.data)
                 if(res){
                     setRedirect(true)
                     console.log("User sign-in successful!")

@@ -35,8 +35,7 @@ export default function OrderForm() {
             axios.put(`http://localhost:8081/api/auth/add-order/${getAuthUser()}`, orders)
             .then((res) => {
                 if(res){
-                    console.log(res.data)
-                    console.log(`Order: ${res} saved to ${getAuthUser()}'s account`)
+                    console.log(`Order: ${res.data} saved to ${getAuthUser()}'s account`)
 
                 }
             }).catch(e =>{

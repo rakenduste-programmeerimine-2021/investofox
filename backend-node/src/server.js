@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000
 const jwtAuth = require("./middleware/jwtAuth")
 require("dotenv").config()
 const cors = require('cors');
@@ -32,11 +32,11 @@ app.get('*', (req, res) => {
 })
 
 //Heroku dep
-if(process.env.NODE_ENV == 'production') {
+/*if(process.env.NODE_ENV == 'production') {
   app.use(express.static('frontend/build'))
-}
+}*/
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/short_urls", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://admin:lollikindel@investofox.wkywv.mongodb.net/investofox", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -44,6 +44,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/short_urls", {
     app.listen(PORT, () => console.log(`Server started on PORT ${PORT}`))
   })
   .catch((err) => {
-    console.log(err)
+    console.log(err + "Error with the connection")
     process.exit(1)
   })

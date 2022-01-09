@@ -20,15 +20,11 @@ export function PortfolioForm() {
         try{
             axios.get(`${STOCK_API_GLOBAL}&symbol=${tickers}&apikey=${TOKEN}`)
             .then(res =>{
-                if(res){
-                    console.log(res.data)
-                }
 
                 const data = res.data['Global Quote']
                 const yesterday = new Date()
                 yesterday.setDate(yesterday.getDate())
                 const time = yesterday.toISOString().slice(0, 17).replace("T", " ").concat("00")
-                console.log(time)
                 const price = data['05. price']
                 const symbol = data['01. symbol']
                 const changePercent = data['10. change percent']
