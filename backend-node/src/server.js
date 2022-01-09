@@ -6,9 +6,10 @@ require("dotenv").config()
 const cors = require('cors');
 const authRoutes = require('./routes/auth')
 const orderRoutes = require('./routes/order')
+const MONGODB_SECRET = process.env.MONGODB_SECRET
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'https://investofox.herokuapp.com/',
 }
 
 const app = express()
@@ -36,7 +37,7 @@ app.get('*', (req, res) => {
   app.use(express.static('frontend/build'))
 }*/
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://admin:lollikindel@investofox.wkywv.mongodb.net/investofox", {
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGODB_SECRET, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
