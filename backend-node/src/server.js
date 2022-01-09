@@ -36,7 +36,7 @@ if(process.env.NODE_ENV == 'production') {
   app.use(express.static('frontend/build'))
 }
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://root:root@mongo/investofox?authSource=admin', {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
