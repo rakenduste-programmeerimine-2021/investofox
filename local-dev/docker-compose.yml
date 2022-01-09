@@ -5,7 +5,7 @@ services:
     build:
       context: '../frontend'
     ports: 
-      - '3000:3000'
+      - '5000:5000'
     volumes: 
       - '../frontend:/home/node/app:delegated'
     command: 'run start'
@@ -27,7 +27,7 @@ services:
     build:
       context: '../backend-node'
     ports: 
-      - '8081:3000'
+      - '8081:5000'
       - '9000:9000'
     environment: 
       MONGODB_URI: mongodb+srv://admin:lollikindel@investofox.wkywv.mongodb.net/investofox

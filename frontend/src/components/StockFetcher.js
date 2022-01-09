@@ -6,12 +6,12 @@ import axios from "axios"
 //Function which fetches the current prices and updates our state with current prices and profit/loss
 const stockFetcher = async(stocks, setStocks, profitLossCalculator) => {
     await stocks.forEach(async (stock) => {
-        console.log(stock)
+        //console.log(stock)
         try {
             const ticker = stock.ticker
             const response = await axios.get(`${STOCK_API_GLOBAL}&symbol=${ticker}&apikey=${TOKEN}`)
             const returnedData = await response.data;
-            console.log(returnedData)
+            //console.log(returnedData)
 
             const yesterday = new Date()
             yesterday.setDate(yesterday.getDate())
