@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.859f62a3.chunk.css",
+    "main.js": "/static/js/main.f2ceac99.chunk.js",
+    "main.js.map": "/static/js/main.f2ceac99.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.4e904e5d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.4e904e5d.js.map",
+    "static/js/2.e76f93dc.chunk.js": "/static/js/2.e76f93dc.chunk.js",
+    "static/js/2.e76f93dc.chunk.js.map": "/static/js/2.e76f93dc.chunk.js.map",
+    "static/js/3.9fa4605f.chunk.js": "/static/js/3.9fa4605f.chunk.js",
+    "static/js/3.9fa4605f.chunk.js.map": "/static/js/3.9fa4605f.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.859f62a3.chunk.css.map": "/static/css/main.859f62a3.chunk.css.map",
+    "static/js/2.e76f93dc.chunk.js.LICENSE.txt": "/static/js/2.e76f93dc.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/Antic-Regular.5115ac81.ttf",
+    "static/media/InvestoFoxLogo.a63ea58c.svg": "/static/media/InvestoFoxLogo.a63ea58c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4e904e5d.js",
+    "static/js/2.e76f93dc.chunk.js",
+    "static/css/main.859f62a3.chunk.css",
+    "static/js/main.f2ceac99.chunk.js"
+  ]
+}
