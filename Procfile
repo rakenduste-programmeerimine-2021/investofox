@@ -1,1 +1,1 @@
-web: node backend-node/src/server.js
+web: node ./backend-node/src/server.js
